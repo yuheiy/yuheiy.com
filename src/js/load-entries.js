@@ -33,7 +33,8 @@ const setInnerHTML = (containerElement, innerHTML) => {
 }
 
 const loadEntries = containerElement => {
-  const YUHEI_BLOG_FEED = 'http://yuheiy.hatenablog.com/feed'
+  // const YUHEI_BLOG_FEED = 'http://yuheiy.hatenablog.com/feed'
+  const YUHEI_BLOG_FEED = 'https://ancient-headland-58815.herokuapp.com/'
   const RYDEN_BLOG_FEED = 'https://ryden-inc.github.io/rookies/atom.xml'
 
   Promise.all([
