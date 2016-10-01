@@ -1,0 +1,27 @@
+{
+  "canonical": "/",
+  "description": "Hi, I'm Yuhei Yasuda, a front-end developer.",
+  "navItems": [
+    {
+      "title": "Twitter",
+      "href": "https://twitter.com/_yuheiy"
+    }, {
+      "title": "GitHub",
+      "href": "https://github.com/yuheiy"
+    }, {
+      "title": "Email",
+      "href": "mailto:yuhei.yasuda1003@gmail.com"
+    }
+  ],
+  "projects": [
+    {
+      "title": "page-dispatcher",
+      "href": "https://github.com/yuheiy/page-dispatcher",
+      "description": "ページごとに実行するJavaScriptの処理を切り分けるだけのライブラリです。"
+    }, {
+      "title": "Website Gallery",
+      "href": "https://gallery.yhey.me/",
+      "description": "気になったWebサイトを集めています。"
+    }
+  ]
+}

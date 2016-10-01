@@ -1,0 +1,48 @@
+doctype html
+html(lang= lang)
+  include partial/head
+
+  body
+    canvas#js-canvas.creative-canvas
+
+    header.page-header
+      h1= siteTitle
+      nav
+        ul
+          each item in navItems
+            li
+              a(href= item.href)= item.title
+
+    p.page-heading
+      | Hi, I'm Yuhei Yasuda, a front-end developer working for 
+      a(href="http://www.ryden.co.jp/") Ryden Inc.
+      |  In Japan.
+
+    section.section
+      h1.section__heading Projects
+
+      .section__content
+        each project in projects
+          section
+            h1
+              a(href= project.href)= project.title
+            p= project.description
+
+    section.section
+      h1.section__heading Recent Entries
+
+      .section__content
+        #js-entries-list
+          .section__stuff Now Loading...
+
+        section.quote-source
+          h1 Source
+          ul
+            li
+              a(href="http://yuheiy.hatenablog.com/") yuhei blog
+            li
+              a(href="https://ryden-inc.github.io/rookies/") ライデンの新人ブログ
+
+    .page-footer
+      button#js-semicolon.page-footer__semicolon
+      .page-footer__bar

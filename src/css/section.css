@@ -1,0 +1,57 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6rem;
+
+  @media (min-width: 60rem) {
+    flex-direction: row;
+  }
+
+  &__heading {
+    margin: 0;
+
+    @media (min-width: 60rem) {
+      width: calc(100% * 3 / 12);
+      padding-right: .5rem;
+      box-sizing: border-box;
+    }
+  }
+
+  &__content {
+    flex: 1;
+
+    @media (min-width: 60rem) {
+      padding-left: .5rem;
+      box-sizing: border-box;
+    }
+
+    section {
+      + section {
+        margin-top: 3rem;
+      }
+
+      &:first-child h1 {
+        @media (min-width: 60rem) {
+          margin-top: calc(1.5rem - 1.17rem);
+        }
+      }
+
+      &:last-child p:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__stuff {
+    min-height: 80rem;
+    margin-top: calc(1rem + (1.17rem - 1rem));
+
+    @media (min-width: 45rem) {
+      min-height: 60rem;
+    }
+
+    @media (min-width: 60rem) {
+      margin-top: calc(1.5rem - 1rem);
+    }
+  }
+}

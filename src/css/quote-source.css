@@ -1,0 +1,37 @@
+.quote-source {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+
+  @media (min-width: 30rem) {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  h1 {
+    margin-top: 0;
+
+    @media (min-width: 30rem) {
+      margin-bottom: 0;
+    }
+
+    &::after {
+      content: ":";
+    }
+  }
+
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @media (min-width: 30rem) {
+      padding-left: .8em;
+    }
+  }
+
+  li:not(:first-child) {
+    margin-left: .8em;
+  }
+}

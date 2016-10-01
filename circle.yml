@@ -1,0 +1,18 @@
+general:
+  branches:
+    only:
+      - master
+machine:
+  timezone: Asia/Tokyo
+  node:
+    version: 6
+test:
+  override:
+    - exit 0
+deployment:
+  publish:
+    branch: master
+    commands:
+      - git config --global user.name "Circle CI"
+      - git config --global user.email "yuhei.yasuda1003@gmail.com"
+      - npm run deploy

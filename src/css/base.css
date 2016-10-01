@@ -1,0 +1,85 @@
+:root {
+  --black: #444;
+  --white: #fcfcfc;
+  --text-color: var(--black);
+  --bg-color: var(--white);
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Noto, sans-serif;
+  font-display: swap;
+  line-height: calc(1.7 * .9);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+
+  @media (min-width: 45rem) {
+    line-height: 1.7;
+  }
+
+  @media (min-width: 75rem) {
+    font-size: 150%;
+  }
+
+  @media (min-width: 90rem) {
+    font-size: 175%;
+  }
+
+  @media (min-width: 120rem) {
+    font-size: 200%;
+  }
+
+  .is-reversed& {
+    --text-color: var(--white);
+    --bg-color: var(--black);
+  }
+}
+
+body {
+  margin: 1rem;
+
+  @media (min-width: 60rem) {
+    margin: 2rem;
+  }
+
+  @media (min-width: 75rem) {
+    margin: 3rem;
+  }
+}
+
+article,
+aside,
+nav,
+section {
+  h1 {
+    margin: .83em 0;
+    font-size: 1.5em;
+  }
+
+  article,
+  aside,
+  nav,
+  section {
+    h1 {
+      margin: 1em 0;
+      font-size: 1.17em;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  padding-bottom: .1em;
+  border-bottom: .15em solid;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border-bottom-style: dashed;
+  }
+}
+
+button {
+  color: inherit;
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
+}
