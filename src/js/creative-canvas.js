@@ -61,6 +61,7 @@ const initCanvas = canvas => {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
   }
+  const throttledSetCanvasSize = () => requestAnimationFrame(setCanvasSize)
   const FPS = 8
 
   setCanvasSize()
@@ -69,7 +70,7 @@ const initCanvas = canvas => {
     FPS
   )
 
-  window.addEventListener('resize', setCanvasSize, false)
+  window.addEventListener('resize', throttledSetCanvasSize, false)
 }
 
 export default initCanvas
