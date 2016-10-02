@@ -60,7 +60,7 @@ const enableWatchJs = done => {
 }
 
 const js = () => {
-  let b = browserify({
+  const bundler = browserify({
     ...watchify.args,
     entries: 'src/js/main.js',
     debug: development
@@ -71,11 +71,11 @@ const js = () => {
     })
 
   if (production) {
-    b = b.plugin('licensify')
+    bundler.plugin('licensify')
   }
 
-  const bundle = () => b.bundle()
-    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+  const bundle = () => bundler.bundle()
+    .on('error', err => gutil.log('Browserify Error', err))
     .pipe(source('main.js'))
     .pipe(buffer())
     .pipe(gulpif(development, sourcemaps.init({loadMaps: true})))
@@ -88,9 +88,9 @@ const js = () => {
     .pipe(server.stream({match: '**/*.js'}))
 
   if (isWatchifyEnabled) {
-    const w = watchify(b)
-    w.on('update', bundle)
-    w.on('log', gutil.log)
+    const watcher = watchify(bundler)
+    watcher.on('update', bundle)
+    watcher.on('log', gutil.log)
   }
 
   return bundle()
@@ -105,15 +105,17 @@ const html = () =>
   ])
     .pipe(plumber())
     .pipe(data(file => {
-      const metaData = JSON.parse(fs.readFileSync('src/html/metadata.json'))
+      const metaData = JSON.parse(
+        fs.readFileSync('src/html/metadata.json', 'utf8')
+      )
       const pageDataFilePath = file.path.replace(/\.pug$/, '.json')
-      const pageData = (() => {
-        try {
-          return JSON.parse(fs.readFileSync(pageDataFilePath))
-        } catch (e) {
-          return null
-        }
-      })()
+      const pageData = fs.readdirSync(
+        path.dirname(pageDataFilePath)
+      ).includes(
+        path.basename(pageDataFilePath)
+      )
+        ? JSON.parse(fs.readFileSync(pageDataFilePath, 'utf8'))
+        : null
 
       return {
         ...metaData,
@@ -151,7 +153,7 @@ export const serve = done => {
 const watch = () => {
   const assetsWatcher = gulp.watch('src/assets/**/*', copy)
   gulp.watch('src/css/**/*.css', css)
-  const htmlWatcher = gulp.watch('src/html/**/*.{pug,html,json}', html)
+  const htmlWatcher = gulp.watch('src/html/**/*', html)
 
   assetsWatcher.on('unlink', file => {
     const filePathFromSrc = path.relative(path.resolve('src/assets'), file)
