@@ -41,10 +41,9 @@ const handleDoubleTap = (target, callback) => {
   let tapCount = 0
   let tapTimeout = null
 
-  const onTouchStart = event => {
+  const onTouchStart = (...args) => {
     if (++tapCount === 2) {
-      event.preventDefault()
-      callback.apply(target, arguments)
+      callback.apply(target, args)
       clearTimeout(tapTimeout)
       tapCount = 0
     } else {
@@ -61,7 +60,10 @@ const initTheme = element => {
   setTheme(currentTheme)
 
   element.addEventListener('dblclick', reverseTheme, false)
-  handleDoubleTap(element, reverseTheme)
+  handleDoubleTap(element, event => {
+    event.preventDefault()
+    reverseTheme()
+  })
 }
 
 export default initTheme
