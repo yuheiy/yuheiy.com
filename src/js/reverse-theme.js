@@ -56,8 +56,13 @@ const handleDoubleTap = (target, callback) => {
 }
 
 const initTheme = element => {
-  const currentTheme = getCurrentTheme()
-  setTheme(currentTheme)
+  const setCurrentTheme = () => {
+    const currentTheme = getCurrentTheme()
+    setTheme(currentTheme)
+  }
+
+  setCurrentTheme()
+  window.addEventListener('storage', setCurrentTheme)
 
   element.addEventListener('dblclick', reverseTheme, false)
   handleDoubleTap(element, event => {
