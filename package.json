@@ -20,7 +20,6 @@
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-csso": "^2.0.0",
     "gulp-data": "^1.2.1",
-    "gulp-gh-pages": "^0.5.4",
     "gulp-htmlmin": "^3.0.0",
     "gulp-if": "^2.0.1",
     "gulp-optimize-js": "^1.1.0",
