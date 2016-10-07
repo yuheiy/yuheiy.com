@@ -7,6 +7,10 @@
     font-size: 2rem;
   }
 
+  button {
+    line-height: inherit;
+  }
+
   &__semicolon {
     padding: 0 .5em;
     font-family: "Averia Serif Libre", cursive;
