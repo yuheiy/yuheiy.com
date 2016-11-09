@@ -1,12 +1,4 @@
-'use strict'
-
 const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
-
-const times = (n, iteratee) => {
-  for (const i of Array(n).keys()) {
-    iteratee()
-  }
-}
 
 const createFPSControlledLoop = (callback, fps = 60) => {
   let startTime = null
@@ -34,13 +26,14 @@ const createFPSControlledLoop = (callback, fps = 60) => {
 
 const draw = (ctx, width, height) => {
   ctx.clearRect(0, 0, width, height)
+  ctx.globalAlpha = 0.1
   ctx.lineWidth = 8
   const textColor = getComputedStyle(document.documentElement)
     .getPropertyValue('--text-color').trim()
   ctx.strokeStyle = textColor
   ctx.beginPath()
 
-  times(3, () => {
+  for (const _ of Array(3).keys()) {
     let x = - ctx.lineWidth / 2
     let y = height / 2
     ctx.moveTo(x, y)
@@ -50,9 +43,25 @@ const draw = (ctx, width, height) => {
       y += random(- ctx.lineWidth * 4, ctx.lineWidth * 4)
       ctx.lineTo(x, y)
     }
-  })
+  }
 
   ctx.stroke()
+}
+
+const debounce = fn => {
+  let scheduledAnimationFrame = false
+
+  return (...args) => {
+    if (scheduledAnimationFrame) {
+      return
+    }
+
+    scheduledAnimationFrame = true
+    requestAnimationFrame(() => {
+      fn(...args)
+      scheduledAnimationFrame = false
+    })
+  }
 }
 
 const initCanvas = canvas => {
@@ -61,7 +70,6 @@ const initCanvas = canvas => {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
   }
-  const throttledSetCanvasSize = () => requestAnimationFrame(setCanvasSize)
   const FPS = 8
 
   setCanvasSize()
@@ -70,7 +78,7 @@ const initCanvas = canvas => {
     FPS
   )
 
-  window.addEventListener('resize', throttledSetCanvasSize, false)
+  window.addEventListener('resize', debounce(setCanvasSize))
 }
 
 export default initCanvas

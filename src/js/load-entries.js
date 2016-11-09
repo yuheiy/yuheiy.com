@@ -1,5 +1,3 @@
-'use strict'
-
 const fetchXML = url => new Promise(resolve => {
   const xhr = new XMLHttpRequest()
   xhr.open('GET', url, true)

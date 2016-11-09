@@ -1,5 +1,3 @@
-'use strict'
-
 const STORAGE_KEY_NAME = 'color-theme'
 const STATE_CLASS_NAME = 'is-reversed'
 
@@ -43,7 +41,7 @@ const handleDoubleTap = (target, callback) => {
 
   const onTouchStart = (...args) => {
     if (++tapCount === 2) {
-      callback.apply(target, args)
+      callback(...args)
       clearTimeout(tapTimeout)
       tapCount = 0
     } else {
@@ -52,7 +50,7 @@ const handleDoubleTap = (target, callback) => {
     }
   }
 
-  target.addEventListener('touchstart', onTouchStart, false)
+  target.addEventListener('touchstart', onTouchStart)
 }
 
 const initTheme = element => {
@@ -64,7 +62,7 @@ const initTheme = element => {
   setCurrentTheme()
   window.addEventListener('storage', setCurrentTheme)
 
-  element.addEventListener('dblclick', reverseTheme, false)
+  element.addEventListener('dblclick', reverseTheme)
   handleDoubleTap(element, event => {
     event.preventDefault()
     reverseTheme()

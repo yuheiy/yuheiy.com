@@ -1,8 +1,6 @@
-'use strict'
-
-import loadEntries from './load-entries'
-import initCanvas from './creative-canvas'
-import initTheme from './reverse-theme'
+import loadEntries from './load-entries.js'
+import initCanvas from './creative-canvas.js'
+import initTheme from './reverse-theme.js'
 
 loadEntries(document.getElementById('js-entries-list'))
 initCanvas(document.getElementById('js-canvas'))

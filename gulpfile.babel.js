@@ -29,7 +29,7 @@ const development = !production
 const server = browserSync.create()
 
 const copy = () =>
-  gulp.src('src/assets/**/*', {since: gulp.lastRun(copy)})
+  gulp.src('src/static/**/*', {since: gulp.lastRun(copy)})
     .pipe(gulp.dest('dist'))
     .pipe(server.stream())
 
@@ -156,7 +156,7 @@ const watch = () => {
   const htmlWatcher = gulp.watch('src/html/**/*', html)
 
   assetsWatcher.on('unlink', file => {
-    const filePathFromSrc = path.relative(path.resolve('src/assets'), file)
+    const filePathFromSrc = path.relative(path.resolve('src/static'), file)
     const destFilePath = path.resolve('dist', filePathFromSrc)
     del.sync(destFilePath)
   })
