@@ -15,7 +15,11 @@
   ],
   "projects": [
     {
-      "title": "page-dispatcher",
+      "title": "Responsive Image Map",
+      "href": "https://github.com/yuheiy/responsive-image-map",
+      "description": "イメージマップの座標をレスポンシブにします。"
+    }, {
+      "title": "Page Dispatcher",
       "href": "https://github.com/yuheiy/page-dispatcher",
       "description": "ページごとに実行するJavaScriptの処理を切り分けるだけのライブラリです。"
     }, {
