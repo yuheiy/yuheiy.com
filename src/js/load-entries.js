@@ -32,7 +32,7 @@ const setInnerHTML = (containerElement, innerHTML) => {
 
 const loadEntries = containerElement => {
   // const YUHEI_BLOG_FEED = 'http://yuheiy.hatenablog.com/feed'
-  const YUHEI_BLOG_FEED = 'https://yuheiy-blog-feed.herokuapp.com/'
+  const YUHEI_BLOG_FEED = 'https://yuheiy-blog-feed.appspot-preview.com/'
   const RYDEN_BLOG_FEED = 'https://ryden-inc.github.io/rookies/atom.xml'
 
   Promise.all([
