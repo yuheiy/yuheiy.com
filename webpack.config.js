@@ -6,9 +6,8 @@ const isDev = process.env.NODE_ENV !== 'production'
 module.exports = {
   entry: {
     app: [
-      'core-js/modules/es6.promise',
-      'whatwg-fetch',
-      './src/js/index.js',
+      './src/js/polyfills.js',
+      './src/js/main.js',
     ],
   },
   output: {
@@ -35,7 +34,7 @@ module.exports = {
     ...(isDev ? [] : [
       new webpack.LoaderOptionsPlugin({
         minimize: true,
-        debug: false
+        debug: false,
       }),
       new webpack.optimize.UglifyJsPlugin({
         beautify: false,

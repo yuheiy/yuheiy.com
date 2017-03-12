@@ -35,7 +35,7 @@
   p {
     @extend %typography-lead;
 
-    color: $color-gray-dark;
+    color: $color-gray;
 
     @media (min-width: $breakpoint-content) {
       font-size: ($ratio-text-lg * 1rem);
@@ -45,6 +45,6 @@
   p a:hover,
   p a:active,
   p a:focus {
-    background-color: $color-gray-dark;
+    background-color: $color-gray;
   }
 }

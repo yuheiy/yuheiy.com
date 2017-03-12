@@ -4,9 +4,7 @@ $font-stack-serif: "PT Serif", Baskerville, Cambria, serif;
 // color
 $color-black: hsl(0, 0%, 14%);
 $color-white: hsl(0, 0%, 99%);
-$color-gray: mix($color-black, $color-white);
-$color-gray-light: mix($color-white, $color-gray);
-$color-gray-dark: mix($color-black, $color-gray);
+$color-gray: mix($color-black, mix($color-black, $color-white));
 
 // ratio
 $ratio: 1.618; // golden ratio

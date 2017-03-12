@@ -14,7 +14,7 @@
 
   time {
     font-size: ($ratio-text-sm * 1rem);
-    color: $color-gray-dark;
+    color: $color-gray;
 
     @media (min-width: $breakpoint-content) {
       margin-left: $spacing-sm;
