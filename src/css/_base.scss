@@ -1,3 +1,63 @@
+html {
+  font-size: percentage($ratio-text-root);
+
+  @media (min-width: $breakpoint-lg) {
+    font-size: percentage($ratio-text-root-lg);
+  }
+}
+
 body {
   margin: 0;
+  font-family: $font-stack-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: $line-height;
+  color: $color-black;
+  background-color: $color-white;
+}
+
+main {
+  display: block; // for IE 11
+}
+
+h1,
+h2,
+h3 {
+  @extend %typography-heading;
+
+  margin-top: 0;
+  margin-bottom: $spacing;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: $spacing;
+}
+
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: $spacing;
+  padding-left: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid;
+  transition: all .2s ease-out;
+  outline: 0;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-white;
+    background-color: $color-black;
+    border-bottom-color: transparent;
+  }
+}
+
+template {
+  display: none; // for IE 11
 }

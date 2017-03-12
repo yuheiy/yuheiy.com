@@ -1,0 +1,6 @@
+.articles-holder {
+  $item-count: 5;
+
+  margin-top: $spacing;
+  min-height: ((($line-height * $item-count) * 1rem) + ($spacing-xs * ($item-count - 1)));
+}

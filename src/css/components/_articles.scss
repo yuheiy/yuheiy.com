@@ -1,0 +1,47 @@
+.articles {
+  @extend %typography-kerning;
+
+  li {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: $spacing-xs;
+
+    @media (min-width: $breakpoint-content) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  time {
+    font-size: ($ratio-text-sm * 1rem);
+    color: $color-gray-dark;
+
+    @media (min-width: $breakpoint-content) {
+      margin-left: $spacing-sm;
+    }
+
+    @media (min-width: $breakpoint-full) {
+      $g: $width-gutter-lg;
+      $w: (($width-content-outer - ($width-content + ($g * 2))) / 2);
+
+      width: $w;
+      margin-left: $g;
+      margin-right: (($w + $g) * -1);
+    }
+  }
+
+  &_title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    @media (min-width: $breakpoint-content) {
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+  }
+
+  &_title a {
+    border-bottom-width: 1px;
+  }
+}

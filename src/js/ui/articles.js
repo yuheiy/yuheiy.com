@@ -1,0 +1,73 @@
+import {contentLoaded} from 'document-promises'
+import Vue from 'vue'
+import {fetchXML} from '../util/fetch'
+import {$, $$} from '../util/dom'
+
+const convertFeedToArticles = (xmlDocument, author) => {
+  let entries = $$('entry', xmlDocument)
+  if (author) {
+    entries = entries.filter(entry => $('author name', entry).textContent === author)
+  }
+
+  return entries.map(entry => ({
+    title: $('title', entry).textContent,
+    link: $('link', entry).getAttribute('href'),
+    date: $('published', entry).textContent,
+  }))
+}
+
+export default async () => {
+  await contentLoaded
+
+  for (const el of $$('.js-articles')) {
+    new Vue({
+      el,
+      template: '#template-articles',
+      data: {
+        articles: [],
+        hasError: false,
+        isCompleted: false,
+      },
+      async mounted() {
+        this.now = Date.now()
+
+        try {
+          const xmlDocument = await fetchXML(el.dataset.input)
+          const articles = convertFeedToArticles(xmlDocument, el.dataset.author).slice(0, 5)
+          this.articles = articles
+        } catch (err) {
+          this.hasError = true
+          console.error(err)
+        }
+
+        this.isCompleted = true
+      },
+      methods: {
+        toRelativeDate(to) {
+          to = Date.parse(to)
+          if (!Number.isInteger(to)) return
+
+          let diff = (this.now - to) / 1000
+          if (!Number.isInteger(Math.trunc(diff)) || diff < 0) return
+
+          if (diff === 0) return 'たった今'
+          if (diff < 60) return `${Math.trunc(diff)}秒前`
+
+          diff = diff / 60
+          if (diff < 60) return `${Math.trunc(diff)}分前`
+
+          diff = diff / 60
+          if (diff < 24) return `${Math.trunc(diff)}時間前`
+
+          diff = diff / 24
+          if (diff < 30) return `${Math.trunc(diff)}日前`
+
+          diff = diff / 30
+          if (diff < 12) return `${Math.trunc(diff)}ヶ月前`
+
+          return `${Math.trunc(diff / 12)}年前`
+        },
+      },
+    })
+  }
+}

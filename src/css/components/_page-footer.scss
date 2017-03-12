@@ -1,0 +1,13 @@
+.page-footer {
+  display: flex;
+  justify-content: flex-end;
+  max-width: $width-content-outer;
+  margin: $spacing-xxl auto $spacing-lg;
+  padding-right: $width-gutter-sm;
+  padding-left: $width-gutter-sm;
+
+  p {
+    margin-bottom: 0;
+    border-top: 4px solid;
+  }
+}

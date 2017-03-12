@@ -1,0 +1,19 @@
+%typography-kerning {
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+}
+
+%typography-text {
+  text-align: justify;
+  word-break: break-all;
+}
+
+%typography-heading {
+  @extend %typography-kerning;
+
+  line-height: $line-height-sm;
+}
+
+%typography-lead {
+  @extend %typography-kerning;
+}

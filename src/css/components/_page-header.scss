@@ -1,0 +1,50 @@
+.page-header {
+  max-width: $width-content-outer;
+  margin-top: $spacing-lg;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $width-gutter-sm;
+  padding-left: $width-gutter-sm;
+
+  h1 {
+    font-size: ($ratio-text-xxl * 1rem);
+    font-weight: inherit;
+
+    @media (min-width: $breakpoint-content) {
+      font-size: ($ratio-text-xxxl * 1rem);
+    }
+  }
+
+  h1 ruby {
+    display: inline-flex;
+    flex-direction: column-reverse;
+  }
+
+  h1 ruby:not(:last-child) {
+    margin-right: .5em;
+  }
+
+  h1 rt {
+    font-size: ($ratio-text-sm * 1rem);
+
+    @media (min-width: $breakpoint-content) {
+      font-size: ($ratio-text * 1rem);
+    }
+  }
+
+  p {
+    @extend %typography-lead;
+
+    color: $color-gray-dark;
+
+    @media (min-width: $breakpoint-content) {
+      font-size: ($ratio-text-lg * 1rem);
+    }
+  }
+
+  p a:hover,
+  p a:active,
+  p a:focus {
+    background-color: $color-gray-dark;
+  }
+}

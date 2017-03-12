@@ -1,0 +1,53 @@
+.content {
+  max-width: $width-content;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: $spacing-lg;
+  padding-right: $width-gutter-sm;
+  padding-left: $width-gutter-sm;
+
+  h2 {
+    margin-top: $spacing-xl;
+    font-size: ($ratio-text-xl * 1rem);
+
+    @media (min-width: $breakpoint-content) {
+      margin-top: $spacing-xxl;
+    }
+
+    @media (min-width: $breakpoint-full) {
+      margin-left: ($width-gutter-lg * -1);
+    }
+  }
+
+  h3 {
+    margin-top: $spacing-lg;
+    margin-bottom: $spacing-sm;
+    font-size: ($ratio-text-lg * 1rem);
+  }
+
+  h3::before {
+    @media (min-width: $breakpoint-full) {
+      $w: $width-gutter-lg;
+
+      content: "-";
+      display: inline-flex;
+      justify-content: center;
+      width: $w;
+      margin-left: ($w * -1);
+    }
+  }
+
+  p {
+    @extend %typography-text;
+  }
+
+  > section:first-child h2 + p::first-letter {
+    // line-heightで合わせるとぴったりにならないのでmarginで調整
+    float: left;
+    margin-top: ((($line-height - 1) / 2) * 1rem);
+    margin-right: -.05em; // magic number
+    margin-left: -.175em; // magic number
+    font-size: ((($line-height * 3) - ($line-height - 1)) * 1rem);
+    line-height: 1;
+  }
+}

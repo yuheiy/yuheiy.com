@@ -1,0 +1,89 @@
+.author-photo {
+  margin-top: $spacing-xl;
+
+  @media (min-width: $breakpoint-content) {
+    max-width: $width-content-outer;
+    margin-top: $spacing-xxl;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $width-gutter-sm;
+    padding-left: $width-gutter-sm;
+  }
+
+  &_image {
+    position: relative;
+    margin-left: $width-gutter-lg;
+    background-image: url("/assets/author.jpg");
+    background-position: center 75%;
+    background-size: cover;
+
+    @media (min-width: $breakpoint-content) {
+      float: right;
+      width: ((100% / $ratio) * ($ratio / ($ratio + 1)));
+      margin-top: ((($ratio-text-lg - 1) * $line-height-sm) / 2 * 1rem);
+      margin-bottom: (($line-height - 1) / 2 * 1rem);
+      margin-left: $width-gutter;
+      background-position: center 80%;
+    }
+
+    @media (min-width: $breakpoint-full) {
+      margin-left: $width-gutter-lg;
+    }
+  }
+
+  &_image::before {
+    content: "";
+    display: block;
+    padding-top: (100% / $ratio);
+
+    @media (min-width: $breakpoint-content) {
+      padding-top: (100% / $ratio-secondary);
+    }
+  }
+
+  &_overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &_overlay::before,
+  &_overlay::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 50%;
+    background-color: $color-white;
+  }
+
+  &_overlay::before {
+    top: 0;
+    transform-origin: left;
+  }
+
+  &_overlay::after {
+    bottom: 0;
+    transform-origin: right;
+  }
+
+  .is-shown &_overlay::before {
+    animation: author-photo_slide-out .75s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; // easeOutCubic
+  }
+
+  .is-shown &_overlay::after {
+    animation: author-photo_slide-out .8s .3s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+}
+
+@keyframes author-photo_slide-out {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}

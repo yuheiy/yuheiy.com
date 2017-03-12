@@ -5,7 +5,11 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   entry: {
-    app: './src/js/index.js'
+    app: [
+      'core-js/modules/es6.promise',
+      'whatwg-fetch',
+      './src/js/index.js',
+    ],
   },
   output: {
     path: path.join(__dirname, 'dist/assets'),
@@ -16,10 +20,16 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        include: path.join(__dirname, 'src/js'),
         use: 'babel-loader',
       },
     ],
+  },
+  resolve: {
+    alias: {
+      'document-promises': 'document-promises/document-promises.js',
+      'vue': 'vue/dist/vue.esm.js',
+    },
   },
   plugins: [
     ...(isDev ? [] : [
@@ -31,12 +41,12 @@ module.exports = {
         beautify: false,
         mangle: {
           screw_ie8: true,
-          keep_fnames: true
+          keep_fnames: true,
         },
         compress: {
-          screw_ie8: true
+          screw_ie8: true,
         },
-        comments: false
+        comments: false,
       }),
       new webpack.DefinePlugin({
         'process.env': {
