@@ -1,4 +1,3 @@
-import {contentLoaded} from 'document-promises'
 import useragent from 'express-useragent'
 
 export default async () => {
@@ -6,8 +5,6 @@ export default async () => {
   if (ua.platform === 'Apple Mac' || ua.isiPad || ua.isiPhone || ua.isiPod) {
     return
   }
-
-  await contentLoaded
 
   document.documentElement.classList.add('sans-serif')
 }

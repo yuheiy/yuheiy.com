@@ -7,5 +7,5 @@ export default async () => {
   const styleEl = document.createElement('style')
   document.head.appendChild(styleEl)
   const styleSheet = styleEl.sheet
-  styleSheet.insertRule('rt { text-align: center }')
+  styleSheet.insertRule('rt { text-align: center }', 0)
 }
