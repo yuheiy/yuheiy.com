@@ -18,6 +18,7 @@ const convertFeedToArticles = (xmlDocument, author) => {
 
 export default async () => {
   await contentLoaded
+  const now = Date.now()
 
   for (const el of $$('.js-articles')) {
     new Vue({
@@ -29,8 +30,6 @@ export default async () => {
         isCompleted: false,
       },
       async mounted() {
-        this.now = Date.now()
-
         try {
           const xmlDocument = await fetchXML(el.dataset.input)
           const articles = convertFeedToArticles(xmlDocument, el.dataset.author).slice(0, 5)
@@ -47,7 +46,7 @@ export default async () => {
           to = Date.parse(to)
           if (!Number.isInteger(to)) return
 
-          let diff = (this.now - to) / 1000
+          let diff = (now - to) / 1000
           if (!Number.isInteger(Math.trunc(diff)) || diff < 0) return
 
           if (diff === 0) return 'たった今'
