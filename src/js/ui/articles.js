@@ -18,6 +18,7 @@ const convertFeedToArticles = (xmlDocument, author) => {
 
 export default async () => {
   await contentLoaded
+
   const now = Date.now()
 
   for (const el of $$('.js-articles')) {
@@ -42,6 +43,7 @@ export default async () => {
         this.isCompleted = true
       },
       methods: {
+        // 参考: https://github.com/hail2u/hail2u.net/blob/ce9decd6362d03ab7acf65afc8dfd056e3392330/src/js/reldate.js
         toRelativeDate(to) {
           to = Date.parse(to)
           if (!Number.isInteger(to)) return

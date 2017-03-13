@@ -4,8 +4,10 @@
 }
 
 %typography-text {
-  text-align: justify;
-  word-break: break-all;
+  @media (min-width: $breakpoint-content) {
+    text-align: justify;
+    word-break: break-all;
+  }
 }
 
 %typography-heading {

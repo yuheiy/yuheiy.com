@@ -14,6 +14,11 @@ body {
   line-height: $line-height;
   color: $color-black;
   background-color: $color-white;
+
+  // for rendering engine that is not good
+  .sans-serif & {
+    font-family: Calibri, sans-serif;
+  }
 }
 
 main {
