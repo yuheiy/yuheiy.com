@@ -47,35 +47,40 @@
     right: 0;
     bottom: 0;
     left: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   &_overlay::before,
   &_overlay::after {
     content: "";
-    position: absolute;
-    right: 0;
-    left: 0;
     background-color: $color-white;
   }
 
   &_overlay::before {
-    top: 0;
-    height: calc(#{(1 / (1 + $ratio)) * 100%} + 1px);
+    flex-grow: 1;
     transform-origin: left;
   }
 
   &_overlay::after {
-    bottom: 0;
-    height: (($ratio / (1 + $ratio)) * 100%);
+    flex-grow: $ratio;
     transform-origin: right;
   }
 
+  .is-shown &_overlay::before,
+  .is-shown &_overlay::after {
+    animation-name: author-photo_slide-out;
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1); // easeOutCubic
+    animation-fill-mode: forwards;
+  }
+
   .is-shown &_overlay::before {
-    animation: author-photo_slide-out .75s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; // easeOutCubic
+    animation-duration: .75s;
   }
 
   .is-shown &_overlay::after {
-    animation: author-photo_slide-out .8s .3s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation-duration: .8s;
+    animation-delay: .3s;
   }
 }
 
