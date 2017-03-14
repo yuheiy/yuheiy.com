@@ -16,36 +16,37 @@ const convertFeedToArticles = (xmlDocument, author) => {
   }))
 }
 
+// 参考: https://github.com/hail2u/hail2u.net/blob/ce9decd6362d03ab7acf65afc8dfd056e3392330/src/js/reldate.js
+let _now
+const toRelativeDate = to => {
+  to = Date.parse(to)
+  if (!Number.isInteger(to)) return
+
+  if (!Number.isInteger(_now)) _now = Date.now()
+
+  let diff = (_now - to) / 1000
+  if (!Number.isInteger(Math.trunc(diff)) || diff < 0) return
+
+  if (Math.floor(diff) === 0) return 'たった今'
+  if (diff < 60) return `${Math.trunc(diff)}秒前`
+
+  diff = diff / 60
+  if (diff < 60) return `${Math.trunc(diff)}分前`
+
+  diff = diff / 60
+  if (diff < 24) return `${Math.trunc(diff)}時間前`
+
+  diff = diff / 24
+  if (diff < 30) return `${Math.trunc(diff)}日前`
+
+  diff = diff / 30
+  if (diff < 12) return `${Math.trunc(diff)}ヶ月前`
+
+  return `${Math.trunc(diff / 12)}年前`
+}
+
 export default async () => {
   await contentLoaded
-
-  const now = Date.now()
-
-  // 参考: https://github.com/hail2u/hail2u.net/blob/ce9decd6362d03ab7acf65afc8dfd056e3392330/src/js/reldate.js
-  const toRelativeDate = to => {
-    to = Date.parse(to)
-    if (!Number.isInteger(to)) return
-
-    let diff = (now - to) / 1000
-    if (!Number.isInteger(Math.trunc(diff)) || diff < 0) return
-
-    if (diff === 0) return 'たった今'
-    if (diff < 60) return `${Math.trunc(diff)}秒前`
-
-    diff = diff / 60
-    if (diff < 60) return `${Math.trunc(diff)}分前`
-
-    diff = diff / 60
-    if (diff < 24) return `${Math.trunc(diff)}時間前`
-
-    diff = diff / 24
-    if (diff < 30) return `${Math.trunc(diff)}日前`
-
-    diff = diff / 30
-    if (diff < 12) return `${Math.trunc(diff)}ヶ月前`
-
-    return `${Math.trunc(diff / 12)}年前`
-  }
 
   for (const el of $$('.js-articles')) {
     new Vue({
