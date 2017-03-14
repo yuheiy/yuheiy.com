@@ -1,24 +1,24 @@
 html {
+  font-family: $font-stack-serif;
   font-size: percentage($ratio-text-root);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: $line-height;
 
   @media (min-width: $breakpoint-lg) {
     font-size: percentage($ratio-text-root-lg);
+  }
+
+  // for rendering engine that is not good
+  &.sans-serif {
+    font-family: $font-stack-sans-serif;
   }
 }
 
 body {
   margin: 0;
-  font-family: $font-stack-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: $line-height;
   color: $color-black;
   background-color: $color-white;
-
-  // for rendering engine that is not good
-  .sans-serif & {
-    font-family: $font-stack-sans-serif;
-  }
 }
 
 main {
@@ -30,19 +30,16 @@ h2,
 h3 {
   @extend %typography-heading;
 
-  margin-top: 0;
-  margin-bottom: $spacing;
+  margin: 0 0 $spacing;
 }
 
 p {
-  margin-top: 0;
-  margin-bottom: $spacing;
+  margin: 0 0 $spacing;
 }
 
 ol,
 ul {
-  margin-top: 0;
-  margin-bottom: $spacing;
+  margin: 0 0 $spacing;
   padding-left: 0;
   list-style: none;
 }
