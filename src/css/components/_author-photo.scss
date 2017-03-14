@@ -10,6 +10,10 @@
     padding-left: $width-gutter-sm;
   }
 
+  @media print {
+    display: none;
+  }
+
   &_image {
     position: relative;
     margin-left: $width-gutter-lg;
