@@ -42,12 +42,13 @@
   }
 
   > section:first-child h2 + p::first-letter {
-    // line-heightで合わせるとぴったりにならないのでmarginで調整
+    $lines: 3;
+
     float: left;
     margin-top: ((($line-height - 1) / 2) * 1rem);
     margin-right: -.05em; // magic number
     margin-left: -.175em; // magic number
-    font-size: ((($line-height * 3) - ($line-height - 1)) * 1rem);
+    font-size: ((($line-height * $lines) - ($line-height - 1)) * 1rem);
     line-height: 1;
   }
 }
