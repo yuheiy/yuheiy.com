@@ -22,7 +22,6 @@
       margin-top: ((($ratio-text-lg - 1) * $line-height-sm) / 2 * 1rem);
       margin-bottom: (($line-height - 1) / 2 * 1rem);
       margin-left: $width-gutter;
-      background-position: center 80%;
     }
 
     @media (min-width: $breakpoint-full) {
