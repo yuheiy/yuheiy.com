@@ -40,7 +40,7 @@
     @extend %typography-text;
   }
 
-  > section:first-child h2 + p::first-letter {
+  .author-photo + & h2  + p::first-letter {
     $lines: 3;
 
     float: left;
