@@ -25,6 +25,8 @@
   }
 
   h1 rt {
+    display: flex;
+    justify-content: space-around;
     font-size: ($ratio-text-sm * 1rem);
 
     @media (min-width: $breakpoint-content) {
