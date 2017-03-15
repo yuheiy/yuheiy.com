@@ -11,7 +11,7 @@
     padding-left: $width-gutter-sm;
   }
 
-  &_inner {
+  figure {
     position: relative;
     overflow: hidden;
     margin-left: $width-gutter-lg;
@@ -30,7 +30,7 @@
     }
   }
 
-  &_inner::before {
+  figure::before {
     content: "";
     display: block;
     padding-top: (100% / $ratio);
@@ -40,7 +40,7 @@
     }
   }
 
-  &_inner img {
+  img {
     position: absolute;
     top: 50%;
     left: 50%;

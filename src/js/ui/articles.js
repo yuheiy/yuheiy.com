@@ -42,7 +42,8 @@ const toRelativeDate = to => {
   diff = diff / 30
   if (diff < 12) return `${Math.trunc(diff)}ヶ月前`
 
-  return `${Math.trunc(diff / 12)}年前`
+  diff = diff / 12
+  return `${Math.trunc(diff)}年前`
 }
 
 export default async () => {
