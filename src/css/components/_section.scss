@@ -36,10 +36,6 @@
     }
   }
 
-  p {
-    @extend %typography-text;
-  }
-
   .author-photo + & h2  + p::first-letter {
     $lines: 3;
 

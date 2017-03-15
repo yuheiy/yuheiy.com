@@ -3,13 +3,6 @@
   text-rendering: optimizeLegibility;
 }
 
-%typography-text {
-  @media (min-width: $breakpoint-content) {
-    text-align: justify;
-    word-break: break-all;
-  }
-}
-
 %typography-heading {
   @extend %typography-kerning;
 
