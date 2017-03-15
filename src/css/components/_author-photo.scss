@@ -1,5 +1,6 @@
 .author-photo {
   margin-top: $spacing-xl;
+  margin-bottom: 0;
 
   @media (min-width: $breakpoint-content) {
     max-width: $width-content-outer;
@@ -10,16 +11,10 @@
     padding-left: $width-gutter-sm;
   }
 
-  @media print {
-    display: none;
-  }
-
-  &_image {
+  &_inner {
     position: relative;
+    overflow: hidden;
     margin-left: $width-gutter-lg;
-    background-image: url("/assets/author.jpg");
-    background-position: center 75%;
-    background-size: cover;
 
     @media (min-width: $breakpoint-content) {
       float: right;
@@ -35,13 +30,24 @@
     }
   }
 
-  &_image::before {
+  &_inner::before {
     content: "";
     display: block;
     padding-top: (100% / $ratio);
 
     @media (min-width: $breakpoint-content) {
       padding-top: (100% / $ratio-secondary);
+    }
+  }
+
+  &_inner img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-60%);
+
+    @media (min-width: $breakpoint-content) {
+      transform: translate(-50%,-58%);
     }
   }
 

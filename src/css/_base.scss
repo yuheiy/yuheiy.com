@@ -40,6 +40,14 @@ ul {
   list-style: none;
 }
 
+figure {
+  margin: 0 0 $spacing;
+}
+
+img {
+  max-width: 100%;
+}
+
 a {
   color: inherit;
   text-decoration: none;
