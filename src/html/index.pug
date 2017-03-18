@@ -91,7 +91,7 @@ html(lang= lang)
     template(type="text/x-template", id="template-articles")
       .articles-holder(:aria-busy="!isCompleted")
         p(v-if="!isCompleted", role="status") 記事を読み込み中です。
-        ul.articles(v-if="isCompleted && !hasError", role="directory")
+        ol.articles(v-if="isCompleted && !hasError", role="directory")
           li(v-for="article in articles")
             .articles_title
               a(:href="article.link") {{article.title}}
