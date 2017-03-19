@@ -5,7 +5,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   line-height: $line-height;
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $breakpoint-full-lg) {
     font-size: percentage($ratio-text-root-lg);
   }
 
