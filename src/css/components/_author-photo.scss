@@ -18,7 +18,7 @@
 
     @media (min-width: $breakpoint-content) {
       float: right;
-      width: ((100% / $ratio) * ($ratio / ($ratio + 1)));
+      width: percentage((1 / $ratio) * ($ratio / ($ratio + 1)));
       margin-top: ((($ratio-text-lg - 1) * $line-height-sm) / 2 * 1rem);
       margin-bottom: (($line-height - 1) / 2 * 1rem);
       margin-left: $width-gutter;
@@ -32,10 +32,10 @@
   figure::before {
     content: "";
     display: block;
-    padding-top: (100% / $ratio);
+    padding-top: percentage(1 / $ratio);
 
     @media (min-width: $breakpoint-content) {
-      padding-top: (100% / $ratio-secondary);
+      padding-top: percentage(1 / $ratio-secondary);
     }
   }
 
@@ -43,6 +43,10 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  img[src="/assets/author.jpg"] {
     transform: translate(-50%,-60%);
 
     @media (min-width: $breakpoint-content) {
