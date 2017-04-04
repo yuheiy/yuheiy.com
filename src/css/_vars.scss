@@ -13,11 +13,11 @@ $ratio: 1.618; // golden ratio
 $ratio-secondary: 1.333; // perfect fourth
 
 $ratio-text: 1;
-$ratio-text-sm: ($ratio-text / (($ratio + 1) / 2));
-$ratio-text-lg: ($ratio-text * (($ratio + 1) / 2));
-$ratio-text-xl: ($ratio-text * $ratio);
-$ratio-text-xxl: ($ratio-text * $ratio * (($ratio + 1) / 2));
 $ratio-text-xxxl: ($ratio-text * $ratio * $ratio);
+$ratio-text-xxl: ($ratio-text * $ratio * (($ratio + $ratio-text) / 2));
+$ratio-text-xl: ($ratio-text * $ratio);
+$ratio-text-lg: ($ratio-text * (($ratio + $ratio-text) / 2));
+$ratio-text-sm: ($ratio-text / (($ratio + $ratio-text) / 2));
 
 $ratio-text-root: ($ratio-text * 1.25);
 $ratio-text-root-lg: ($ratio-text * 1.5);
@@ -27,11 +27,11 @@ $line-height-sm: $ratio-secondary;
 
 // size
 $spacing: ($ratio * 1rem);
-$spacing-xs: ($spacing / $ratio / $ratio);
-$spacing-sm: ($spacing / $ratio);
-$spacing-lg: ($spacing * $ratio);
-$spacing-xl: ($spacing * $ratio * $ratio);
 $spacing-xxl: ($spacing * $ratio * $ratio * $ratio);
+$spacing-xl: ($spacing * $ratio * $ratio);
+$spacing-lg: ($spacing * $ratio);
+$spacing-sm: ($spacing / $ratio);
+$spacing-xs: ($spacing / $ratio / $ratio);
 
 $width-content: (32 * 1rem);
 $width-content-outer: ($width-content * $ratio);
