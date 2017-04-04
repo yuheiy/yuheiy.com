@@ -9,6 +9,8 @@ html(lang= lang)
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=PT+Serif:400,700")
     link(rel="stylesheet", href="/assets/app.css")
     script(src="/assets/app.js", async)
+    script
+      include:uglify-js partial/detect-os.js
     meta(name="twitter:card", content="summary")
     meta(name="twitter:creator", content= `@${twitter}`)
     meta(property="og:title", content= siteTitle)

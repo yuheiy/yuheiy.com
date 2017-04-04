@@ -22,7 +22,6 @@
     "babel-runtime": "^6.23.0",
     "document-promises": "^3.1.2",
     "es6-promise": "^4.1.0",
-    "express-useragent": "^1.0.7",
     "vue": "^2.2.6",
     "whatwg-fetch": "^2.0.3"
   },
@@ -46,6 +45,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.5.1",
+    "jstransformer-uglify-js": "^1.2.0",
     "webpack": "^2.3.3"
   }
 }

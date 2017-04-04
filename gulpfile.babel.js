@@ -10,7 +10,10 @@ const html = () => {
   const data = require('gulp-data')
   const pug = require('gulp-pug')
 
-  return gulp.src('src/html/**/*.pug')
+  return gulp.src([
+    'src/html/**/*.pug',
+    '!src/html/partial',
+  ])
     .pipe(plumber())
     .pipe(data(file => {
       const metaData = JSON.parse(fs.readFileSync('src/html/metadata.json', 'utf8'))
