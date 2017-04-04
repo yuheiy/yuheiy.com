@@ -42,7 +42,6 @@
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^6.4.0",
     "gulp-pug": "^3.3.0",
-    "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.5.1",
     "jstransformer-uglify-js": "^1.2.0",

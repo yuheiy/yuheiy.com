@@ -5,10 +5,7 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   entry: {
-    app: [
-      './src/js/polyfills.js',
-      './src/js/main.js',
-    ],
+    main: './src/js/main.js',
   },
   output: {
     path: path.join(__dirname, 'dist/assets'),
@@ -54,5 +51,5 @@ module.exports = {
       }),
     ]),
   ],
-  devtool: isDev && 'source-map',
+  devtool: 'source-map',
 }

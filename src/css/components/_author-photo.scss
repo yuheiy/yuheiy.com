@@ -80,18 +80,18 @@
     }
   }
 
-  .is-shown &_overlay::before,
-  .is-shown &_overlay::after {
+  .is-visible &_overlay::before,
+  .is-visible &_overlay::after {
     animation-name: author-photo_slide-out;
     animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1); // easeOutCubic
     animation-fill-mode: forwards;
   }
 
-  .is-shown &_overlay::before {
+  .is-visible &_overlay::before {
     animation-duration: .75s;
   }
 
-  .is-shown &_overlay::after {
+  .is-visible &_overlay::after {
     animation-duration: .8s;
     animation-delay: .3s;
   }

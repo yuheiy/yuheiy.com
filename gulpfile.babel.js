@@ -37,7 +37,6 @@ const html = () => {
 const css = () => {
   const gulpif = require('gulp-if')
   const sourcemaps = require('gulp-sourcemaps')
-  const rename = require('gulp-rename')
   const sass = require('gulp-sass')
   const postcss = require('gulp-postcss')
 
@@ -46,9 +45,8 @@ const css = () => {
     '>5% in JP',
   ]
 
-  return gulp.src('src/css/index.scss')
-    .pipe(rename({basename: 'app'}))
-    .pipe(gulpif(isDev, sourcemaps.init()))
+  return gulp.src('src/css/main.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
       require('autoprefixer')({
@@ -59,7 +57,7 @@ const css = () => {
         require('csswring')(),
       ]),
     ]))
-    .pipe(gulpif(isDev, sourcemaps.write('.')))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/assets'))
     .pipe(browserSync.stream({match: '**/*.css'}))
 }
