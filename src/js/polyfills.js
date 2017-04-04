@@ -1,2 +1,2 @@
-import 'core-js/modules/es6.promise'
+import 'es6-promise/auto'
 import 'whatwg-fetch'
