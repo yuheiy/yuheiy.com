@@ -23,7 +23,7 @@
     "core-js": "^2.4.1",
     "document-promises": "^3.1.2",
     "express-useragent": "^1.0.7",
-    "vue": "^2.2.4",
+    "vue": "^2.2.6",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
@@ -41,11 +41,11 @@
     "gulp-data": "^1.2.1",
     "gulp-if": "^2.0.2",
     "gulp-plumber": "^1.1.0",
-    "gulp-postcss": "^6.3.0",
+    "gulp-postcss": "^6.4.0",
     "gulp-pug": "^3.3.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.4.1",
-    "webpack": "^2.2.1"
+    "gulp-sourcemaps": "^2.5.1",
+    "webpack": "^2.3.3"
   }
 }
