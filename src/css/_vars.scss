@@ -39,6 +39,6 @@ $width-gutter: ($ratio * 1rem);
 $width-gutter-sm: ($width-gutter / $ratio);
 $width-gutter-lg: ($width-gutter * $ratio);
 
-$breakpoint-content: (rem-to-em($width-content + ($width-gutter-sm * 2)) * $ratio-text-root);
-$breakpoint-full: (rem-to-em($width-content-outer + ($width-gutter-lg * 2)) * $ratio-text-root);
-$breakpoint-full-lg: (rem-to-em($width-content-outer + ($width-gutter-lg * 2)) * $ratio-text-root-lg);
+$breakpoint-content: rem-to-em(($width-content + ($width-gutter-sm * 2)) * $ratio-text-root);
+$breakpoint-full: rem-to-em(($width-content-outer + ($width-gutter-lg * 2)) * $ratio-text-root);
+$breakpoint-full-lg: rem-to-em(($width-content-outer + ($width-gutter-lg * 2)) * $ratio-text-root-lg);
