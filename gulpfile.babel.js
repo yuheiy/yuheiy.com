@@ -35,7 +35,6 @@ const html = () => {
 }
 
 const css = () => {
-  const gulpif = require('gulp-if')
   const sourcemaps = require('gulp-sourcemaps')
   const sass = require('gulp-sass')
   const postcss = require('gulp-postcss')
