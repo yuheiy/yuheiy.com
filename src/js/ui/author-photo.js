@@ -1,3 +1,4 @@
+import {contentLoaded} from 'document-promises'
 import {wait} from '../util/promise'
 import {$} from '../util/dom'
 
@@ -9,6 +10,7 @@ const loadImage = (imagePath) => new Promise(resolve => {
 })
 
 export default async () => {
+  await contentLoaded
   const el = $('.author-photo')
   const imgEl = $('img', el)
   const {src} = imgEl.dataset
