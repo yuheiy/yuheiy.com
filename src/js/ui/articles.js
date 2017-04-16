@@ -1,5 +1,4 @@
 import {contentLoaded} from 'document-promises'
-import Vue from 'vue'
 import {fetchXML} from '../util/fetch'
 import {$, $$} from '../util/dom'
 
@@ -47,7 +46,10 @@ const toRelativeDate = to => {
 }
 
 export default async () => {
-  await contentLoaded
+  const [Vue] = await Promise.all([
+    (await import('vue')).default,
+    contentLoaded,
+  ])
 
   for (const el of $$('.js-articles')) {
     new Vue({

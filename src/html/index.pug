@@ -6,11 +6,8 @@ html(lang= lang)
     meta(name="description", content= description)
     title= siteTitle
     link(rel="canonical", href= currentPath)
-    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=PT+Serif:400,700")
     link(rel="stylesheet", href="/assets/main.css")
     script(src="/assets/main.js", async)
-    script
-      include:uglify-js partial/detect-os.js
     meta(name="twitter:card", content="summary")
     meta(name="twitter:creator", content= `@${twitter}`)
     meta(property="og:title", content= siteTitle)
@@ -47,7 +44,7 @@ html(lang= lang)
 
     .author-photo
       figure
-        img(src="/assets/author.jpg", alt="安田祐平の写真")
+        img(data-src="/assets/author.jpg", alt="安田祐平の写真")
         .author-photo_overlay
 
     section.section

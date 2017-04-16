@@ -1,5 +1,5 @@
 html {
-  font-family: $font-stack-sans-serif;
+  font-family: sans-serif;
   font-size: percentage($ratio-text-root);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -15,6 +15,11 @@ html {
 
   &[data-os="Mac OS"],
   &[data-os="iOS"] {
+    font-family: serif;
+  }
+
+  &.wf-active[data-os="Mac OS"],
+  &.wf-active[data-os="iOS"] {
     font-family: $font-stack-serif;
   }
 }

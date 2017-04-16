@@ -23,12 +23,14 @@
     "document-promises": "^3.1.2",
     "es6-promise": "^4.1.0",
     "vue": "^2.2.6",
+    "webfontloader": "^1.6.27",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
+    "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-latest": "^6.24.1",
@@ -43,7 +45,6 @@
     "gulp-pug": "^3.3.0",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.0",
-    "jstransformer-uglify-js": "^1.2.0",
     "webpack": "^2.4.1"
   }
 }
