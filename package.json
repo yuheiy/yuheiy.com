@@ -27,12 +27,12 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
-    "babel-core": "^6.24.0",
+    "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-latest": "^6.24.0",
-    "babel-register": "^6.24.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-register": "^6.24.1",
     "browser-sync": "^2.18.8",
     "csswring": "^5.1.1",
     "gh-pages": "^0.12.0",
@@ -42,8 +42,8 @@
     "gulp-postcss": "^6.4.0",
     "gulp-pug": "^3.3.0",
     "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.5.1",
+    "gulp-sourcemaps": "^2.6.0",
     "jstransformer-uglify-js": "^1.2.0",
-    "webpack": "^2.3.3"
+    "webpack": "^2.4.1"
   }
 }
