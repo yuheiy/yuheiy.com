@@ -46,10 +46,9 @@ const toRelativeDate = to => {
 }
 
 export default async () => {
-  const [Vue] = await Promise.all([
-    (await import('vue')).default,
-    contentLoaded,
-  ])
+  const Vue = (await import('vue')).default
+
+  await contentLoaded
 
   for (const el of $$('.js-articles')) {
     new Vue({
