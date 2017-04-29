@@ -71,16 +71,16 @@
   }
 
   &_overlay::before {
-    flex-grow: 1;
+    flex: 1;
     transform-origin: left;
   }
 
   &_overlay::after {
-    flex-grow: $ratio;
+    flex: $ratio;
     transform-origin: right;
 
     @media (min-width: $breakpoint-content) {
-      flex-grow: $ratio-secondary;
+      flex: $ratio-secondary;
     }
   }
 
