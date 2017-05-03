@@ -82,7 +82,10 @@ const js = done => {
 }
 
 const copy = () =>
-  gulp.src('public/**/*')
+  gulp.src([
+    'public/**/*',
+    'public/.nojekyll',
+  ])
     .pipe(gulp.dest('dist'))
 
 export const build = gulp.parallel(html, css, js, copy)
