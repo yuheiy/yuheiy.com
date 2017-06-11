@@ -39,17 +39,11 @@ const css = () => {
   const sass = require('gulp-sass')
   const postcss = require('gulp-postcss')
 
-  const AUTOPREFIXER_BROWSERS = [
-    'last 1 version',
-    '>5% in JP',
-  ]
-
   return gulp.src('src/css/main.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
       require('autoprefixer')({
-        browsers: AUTOPREFIXER_BROWSERS,
         cascade: false,
       }),
       ...(isDev ? [] : [

@@ -95,7 +95,7 @@ html(lang= lang)
     footer.page-footer
       p thanks !
 
-    template(type="text/x-template", id="template-articles")
+    template(id="template-articles")
       .articles-holder(:aria-busy="!isCompleted")
         p(v-if="!isCompleted", role="status") 記事を読み込み中です。
         ol.articles(v-if="isCompleted && !hasError", role="directory")
