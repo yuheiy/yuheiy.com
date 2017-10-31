@@ -38,9 +38,7 @@ html(lang= lang)
             span(aria-hidden="true") い
           rp ）
       p
-        | ウェブフロントエンドデベロッパーです。きちんとしたウェブサイトを作っていきたい人です。2016年から
-        a(href="http://www.ryden.co.jp/") 株式会社ライデン
-        | で働いています。
+        | ウェブフロントエンドデベロッパーです。きちんとしたウェブサイトを作っていきたい人です。
 
     .author-photo
       figure
@@ -64,17 +62,11 @@ html(lang= lang)
         |  までお願いします。
 
     section.section
-      h2 最近書いた記事
+      h2 ブログ
 
       section
         h3
           a(href="http://yuheiy.hatenablog.com/") yuhei blog
-        .articles-holder.js-articles(data-input="https://us-central1-yuhei-blog-feed-8840c.cloudfunctions.net/feed", role="status", aria-busy="true") 記事を読み込み中です。
-
-      section
-        h3
-          a(href="https://ryden-inc.github.io/rookies/") ライデンの新人ブログ
-        .articles-holder.js-articles(data-input="https://ryden-inc.github.io/rookies/feed.xml", data-author="安田 祐平", role="status", aria-busy="true") 記事を読み込み中です。
 
     section.section
       h2 作ってるものと作ったもの
@@ -94,13 +86,3 @@ html(lang= lang)
 
     footer.page-footer
       p thanks !
-
-    template(id="template-articles")
-      .articles-holder(:aria-busy="!isCompleted")
-        p(v-if="!isCompleted", role="status") 記事を読み込み中です。
-        ol.articles(v-if="isCompleted && !hasError", role="directory")
-          li(v-for="article in articles")
-            .articles_title
-              a(:href="article.link") {{article.title}}
-            time(:datetime="article.date") {{toRelativeDate(article.date)}}
-        p(v-if="isCompleted && hasError", role="alert") 記事の読み込みに失敗しました。
