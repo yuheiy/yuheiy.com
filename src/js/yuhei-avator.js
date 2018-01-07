@@ -35,9 +35,15 @@ const ANIMATION_REFRESH_RATE = 1000 / 15
 class YuheiAvator extends withComponent() {
     constructor() {
         super()
-        this.state = { lines: createLines() }
         this._isPlaying = false
         this._timerId = null
+        this.updateLines = this.updateLines.bind(this)
+
+        this.updateLines()
+    }
+
+    updateLines() {
+        this.state = { lines: createLines() }
     }
 
     play() {
@@ -45,9 +51,8 @@ class YuheiAvator extends withComponent() {
             return
         }
 
-        this._timerId = setInterval(() => {
-            this.state = { lines: createLines() }
-        }, ANIMATION_REFRESH_RATE)
+        this.updateLines()
+        this._timerId = setInterval(this.updateLines, ANIMATION_REFRESH_RATE)
         this._isPlaying = true
     }
 
