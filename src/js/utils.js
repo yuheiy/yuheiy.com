@@ -1,3 +1,5 @@
+export const hasTouch = 'ontouchstart' in window
+
 const isCustomElementsSupported = Boolean(window.customElements)
 const isShadowDomSupported = Boolean(document.documentElement.attachShadow)
 

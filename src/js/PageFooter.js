@@ -1,5 +1,5 @@
 import throttle from 'lodash-es/throttle'
-import { canUseWebComponents, shouldReduceMotion } from './utils.js'
+import { hasTouch, canUseWebComponents, shouldReduceMotion } from './utils.js'
 
 const init = () => {
     if (!canUseWebComponents) {
@@ -14,7 +14,7 @@ const init = () => {
     const authorLinkEl = document.querySelector('.PageFooter-authorLink')
 
     const update = () => {
-        const isHovered = authorLinkEl.matches(':hover')
+        const isHovered = !hasTouch && authorLinkEl.matches(':hover')
         const isKeyboardFocused = authorLinkEl.matches('html[data-whatinput="keyboard"] :focus')
         const shouldPlay = isHovered || isKeyboardFocused
         if (shouldPlay) {
