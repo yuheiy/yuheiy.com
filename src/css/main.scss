@@ -20,7 +20,7 @@ $ratio: 1.8;
 $ratio-secondary: 1.4;
 
 $text-ratio-root-md: 1.125;
-$text-ratio-root-lg: 1.25;
+$text-ratio-root-lg: 1.375;
 
 $line-height-body: $ratio;
 $line-height-header: $ratio-secondary;
@@ -32,13 +32,19 @@ $spacing-line-double: $spacing-line * 2;
 
 $spacing-char: 1rem;
 
-$width-content-sm: 32rem;
-$width-content-md: (32rem / $ratio) + ($spacing-char * 6) + 32rem;
+$width-content: 32rem;
+$width-hang: $width-content / $ratio;
+$width-gap-sm: $spacing-char;
+$width-gap-md: $spacing-char * 2;
+$width-gap-lg: $spacing-char * 3;
+$width-wrapper-sm: $width-content;
+$width-wrapper-md: $width-hang + $width-gap-lg * 2 + $width-content;
+$width-wrapper-lg: $width-hang + $width-gap-lg * 2 + $width-content;
 
 // media query
-$mq-sm: "(min-width: #{(($width-content-sm + ($spacing-char * 2) * 2) * $text-ratio-root-md) / 1rem * 1em})";
-$mq-md: "(min-width: #{(($width-content-md + ($spacing-char * 4) * 2) * $text-ratio-root-md) / 1rem * 1em})";
-$mq-lg: "(min-width: #{(($width-content-md + ($spacing-char * 4) * 2) * $text-ratio-root-lg) / 1rem * 1em})";
+$mq-sm: "(min-width: #{(($width-wrapper-sm + $width-gap-md * 2) * $text-ratio-root-md) / 1rem * 1em})";
+$mq-md: "(min-width: #{(($width-wrapper-md + $width-gap-lg * 2) * $text-ratio-root-md) / 1rem * 1em})";
+$mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 4) * $text-ratio-root-lg) / 1rem * 1em})";
 
 @mixin type-header {
     font-family: var(--font-stack-header);
@@ -51,32 +57,6 @@ $mq-lg: "(min-width: #{(($width-content-md + ($spacing-char * 4) * 2) * $text-ra
 @mixin type-antialiase {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-@mixin grid-wrapper {
-    display: grid;
-    grid-gap: $spacing-line 0;
-
-    @media #{$mq-md} {
-        grid-template-areas: "hang content";
-        grid-template-columns: 1fr ($ratio * 1fr);
-        grid-gap: 0 ($spacing-char * 6);
-    }
-}
-
-@mixin grid-hang {
-    @media #{$mq-md} {
-        grid-area: hang;
-        text-align: end;
-    }
-}
-
-@mixin grid-content {
-    hanging-punctuation: allow-end;
-
-    @media #{$mq-md} {
-        grid-area: content;
-    }
 }
 
 :root {
@@ -98,11 +78,23 @@ $mq-lg: "(min-width: #{(($width-content-md + ($spacing-char * 4) * 2) * $text-ra
     );
     --text-size-5: calc(var(--text-size-scale) * var(--text-size-scale) * var(--text-size));
 
+    --width-content: $width-content;
+    --width-gap: $width-gap-sm;
+    --width-wrapper: var(--width-content);
+
     --focus-ring-width: 3px;
     --focus-ring-offset: 4px;
 
+    @media #{$mq-sm} {
+        --width-gap: $width-gap-md;
+    }
+
     @media #{$mq-md} {
         --text-size-scale: $ratio;
+
+        --width-hang: $width-hang;
+        --width-gap: $width-gap-lg;
+        --width-wrapper: calc(var(--width-hang) + var(--width-gap) * 2 + var(--width-content));
     }
 }
 
@@ -132,25 +124,23 @@ html.wf-active {
 body {
     display: grid;
     grid-gap: $spacing-line-double 0;
-    max-width: $width-content-sm;
+    max-width: var(--width-wrapper);
     margin: $spacing-line auto;
-    padding-right: $spacing-char;
-    padding-left: $spacing-char;
+    padding-right: var(--width-gap);
+    padding-left: var(--width-gap);
     font-kerning: none;
     color: var(--color-fg);
     background-color: var(--color-bg);
 
-    @media #{$mq-sm} {
-        padding-right: $spacing-char * 2;
-        padding-left: $spacing-char * 2;
-    }
-
     @media #{$mq-md} {
-        max-width: $width-content-md;
+        grid-template-columns: 1fr ($ratio * 1fr);
+        grid-template-areas:
+            "header header"
+            ". content"
+            ". footer";
+        grid-column-gap: calc(var(--width-gap) * 2);
         margin-top: $spacing-line-double;
         margin-bottom: $spacing-line-double;
-        padding-right: $spacing-char * 4;
-        padding-left: $spacing-char * 4;
     }
 }
 
@@ -261,12 +251,24 @@ html.no-js .BgGraphic + noscript {
 }
 
 .PageHeader {
-    @include grid-wrapper;
+    display: grid;
+    grid-gap: $spacing-line 0;
+
+    @media #{$mq-md} {
+        grid-area: header;
+        grid-template-areas: "hang content";
+        grid-template-columns: 1fr ($ratio * 1fr);
+        grid-gap: 0 calc(var(--width-gap) * 2);
+    }
 }
 
 .PageHeader-heading {
-    @include grid-hang;
     line-height: 1;
+
+    @media #{$mq-md} {
+        grid-area: hang;
+        text-align: end;
+    }
 }
 
 .PageHeader-ruby {
@@ -316,12 +318,13 @@ html.no-js .BgGraphic + noscript {
 }
 
 .PageHeader-lead {
-    @include grid-content;
     @include type-header;
     font-size: var(--text-size-2);
     line-height: unset;
+    hanging-punctuation: allow-end;
 
     @media #{$mq-md} {
+        grid-area: content;
         $rt-height: "(var(--text-size-5) * #{0.5 * 1.25})";
         $line-gap-top: "(var(--text-size-2) * #{($line-height-body - 1) / 2})";
         margin-top: calc(#{$rt-height} - #{$line-gap-top});
@@ -331,29 +334,38 @@ html.no-js .BgGraphic + noscript {
 .Content {
     display: grid;
     grid-gap: $spacing-line-double 0;
+
+    @media #{$mq-md} {
+        grid-area: content;
+    }
 }
 
 .Section {
-    @include grid-wrapper;
+    hanging-punctuation: allow-end;
+
+    @media #{$mq-md} {
+        position: relative;
+    }
 }
 
-.Section-heading {
-    @include grid-hang;
-}
+.SubHeading {
+    margin-bottom: $spacing-line-half;
+    hanging-punctuation: none;
 
-.Section-content {
-    @include grid-content;
+    @media #{$mq-md} {
+        position: absolute;
+        right: 100%;
+        width: var(--width-hang);
+        margin-right: calc(var(--width-gap) * 2);
+        text-align: end;
+    }
 }
 
 .PageFooter {
-    @include grid-wrapper;
-}
-
-.PageFooter-content {
-    @include grid-content;
     text-align: center;
 
     @media #{$mq-md} {
+        grid-area: footer;
         text-align: start;
     }
 }
