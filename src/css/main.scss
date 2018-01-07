@@ -3,6 +3,7 @@ $color-black: hsl(0, 0%, 14%);
 $color-black-light: lighten($color-black, 10%);
 
 $color-white: hsl(0, 0%, 99%);
+$color-white-dark: hsl(0, 0%, 96%);
 
 $color-gray: hsl(0, 0%, 45%);
 
@@ -81,6 +82,8 @@ $mq-lg: "(min-width: #{(($width-content-md + ($spacing-char * 4) * 2) * $text-ra
 :root {
     --color-fg: $color-black;
     --color-bg: $color-white;
+    --color-link: $color-orient;
+    --color-link-underline: $color-orient-light;
 
     --font-stack-body: "YuGothic", sans-serif;
     --font-stack-header: "Yu Mincho", serif;
@@ -95,12 +98,11 @@ $mq-lg: "(min-width: #{(($width-content-md + ($spacing-char * 4) * 2) * $text-ra
     );
     --text-size-5: calc(var(--text-size-scale) * var(--text-size-scale) * var(--text-size));
 
-    --width-content: $width-content-sm;
+    --focus-ring-width: 3px;
+    --focus-ring-offset: 4px;
 
     @media #{$mq-md} {
         --text-size-scale: $ratio;
-
-        --width-content: $width-content-md;
     }
 }
 
@@ -117,14 +119,20 @@ html {
     }
 }
 
+html[data-whatinput="initial"],
+html[data-whatinput="mouse"],
+html[data-whatinput="touch"] {
+    --focus-ring-width: 0;
+}
+
 html.wf-active {
-    --font-stack-header: "heisei-mincho-std", "Yu Mincho", serif;
+    --font-stack-header: "heisei-mincho-std", serif;
 }
 
 body {
     display: grid;
     grid-gap: $spacing-line-double 0;
-    max-width: var(--width-content);
+    max-width: $width-content-sm;
     margin: $spacing-line auto;
     padding-right: $spacing-char;
     padding-left: $spacing-char;
@@ -138,6 +146,7 @@ body {
     }
 
     @media #{$mq-md} {
+        max-width: $width-content-md;
         margin-top: $spacing-line-double;
         margin-bottom: $spacing-line-double;
         padding-right: $spacing-char * 4;
@@ -146,15 +155,9 @@ body {
 }
 
 :focus {
-    outline: $color-bay-of-many 3px solid;
-    outline-offset: 4px;
+    outline: $color-bay-of-many var(--focus-ring-width) solid;
+    outline-offset: var(--focus-ring-offset);
     transition: outline-width 100ms ease-out;
-}
-
-html[data-whatinput="initial"] :focus,
-html[data-whatinput="mouse"] :focus,
-html[data-whatinput="touch"] :focus {
-    outline: 0;
 }
 
 h1,
@@ -221,8 +224,8 @@ h3 + ol {
 }
 
 a {
-    color: $color-orient;
-    text-decoration: underline $color-orient-light;
+    color: var(--color-link);
+    text-decoration-color: var(--color-link-underline);
     text-decoration-skip: ink;
 }
 
@@ -230,9 +233,11 @@ a:hover {
     text-decoration: none;
 }
 
+// It currently does not work with Chrome and Safari, but it will fix in a while.
+// https://bugs.chromium.org/p/chromium/issues/detail?id=768220
 a:visited {
-    color: $color-melanzane;
-    text-decoration: underline $color-melanzane-light;
+    --color-link: $color-melanzane;
+    --color-link-underline: $color-melanzane-light;
 }
 
 html.no-js yuhei-avator {
@@ -240,7 +245,7 @@ html.no-js yuhei-avator {
 }
 
 .BgGraphic {
-    --yuhei-avator__color-fg: lighten($color-black, 82%);
+    --yuhei-avator__color-fg: $color-white-dark;
     --yuhei-avator__color-bg: transparent;
     position: fixed;
     top: 0;
@@ -289,8 +294,11 @@ html.no-js .BgGraphic + noscript {
     font-weight: normal;
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
-    text-align: start; // for firefox
     line-height: inherit;
+
+    @media #{$mq-md} {
+        text-align: start; // for firefox
+    }
 }
 
 .PageHeader-altHeading {
@@ -350,8 +358,8 @@ html.no-js .BgGraphic + noscript {
     }
 }
 
-.PageFooter-authorLink:focus {
-    outline-offset: 0;
+.PageFooter-authorLink {
+    --focus-ring-offset: 0;
 }
 
 .PageFooter-authorImage {
