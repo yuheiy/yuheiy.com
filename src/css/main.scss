@@ -43,8 +43,8 @@ $width-wrapper-lg: $width-hang + $width-gap-lg * 2 + $width-content;
 
 // media query
 $mq-sm: "(min-width: #{(($width-wrapper-sm + $width-gap-md * 2) * $text-ratio-root-md) / 1rem * 1em})";
-$mq-md: "(min-width: #{(($width-wrapper-md + $width-gap-lg * 2) * $text-ratio-root-md) / 1rem * 1em})";
-$mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 4) * $text-ratio-root-lg) / 1rem * 1em})";
+$mq-md: "(min-width: #{(($width-wrapper-md + $width-gap-lg * 2 * 2) * $text-ratio-root-md) / 1rem * 1em})";
+$mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2 * 2) * $text-ratio-root-lg) / 1rem * 1em})";
 
 @mixin type-header {
     font-family: var(--font-stack-header);
