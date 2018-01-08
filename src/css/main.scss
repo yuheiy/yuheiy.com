@@ -231,10 +231,12 @@ a:visited {
 }
 
 html.no-js yuhei-avator {
-    display: none;
+    display: none !important;
 }
 
-.BgGraphic {
+body > yuhei-avator,
+body > .yuhei-avator-fallback,
+html.no-js body > yuhei-avator + noscript .yuhei-avator-fallback {
     --yuhei-avator__color-fg: $color-white-dark;
     --yuhei-avator__color-bg: transparent;
     position: fixed;
@@ -246,11 +248,11 @@ html.no-js yuhei-avator {
     pointer-events: none;
 }
 
-html.no-js .BgGraphic + noscript {
+html.no-js body > yuhei-avator + noscript {
     position: absolute; // for grid
 }
 
-.PageHeader {
+body > header {
     display: grid;
     grid-gap: $spacing-line 0;
 
@@ -262,7 +264,7 @@ html.no-js .BgGraphic + noscript {
     }
 }
 
-.PageHeader-heading {
+body > header h1 {
     line-height: 1;
 
     @media #{$mq-md} {
@@ -271,12 +273,9 @@ html.no-js .BgGraphic + noscript {
     }
 }
 
-.PageHeader-ruby {
+body > header h1 ruby {
     display: inline-flex;
     flex-direction: column-reverse;
-}
-
-.PageHeader-ruby {
     margin-left: -0.0625em;
 
     @media #{$mq-md} {
@@ -284,14 +283,14 @@ html.no-js .BgGraphic + noscript {
     }
 }
 
-.PageHeader-ruby + .PageHeader-ruby {
+body > header h1 ruby + ruby {
     margin-left: 0.5em;
 }
 
-.PageHeader-rb {
+body > header h1 rb {
 }
 
-.PageHeader-rt {
+body > header h1 rt {
     margin-bottom: 0.25em;
     font-weight: normal;
     -webkit-font-smoothing: auto;
@@ -303,7 +302,7 @@ html.no-js .BgGraphic + noscript {
     }
 }
 
-.PageHeader-altHeading {
+body > header span[lang="en"] {
     display: block;
     margin-top: $spacing-line-half;
     margin-left: 0.03125em;
@@ -317,7 +316,7 @@ html.no-js .BgGraphic + noscript {
     }
 }
 
-.PageHeader-lead {
+body > header p {
     @include type-header;
     font-size: var(--text-size-2);
     line-height: unset;
@@ -331,7 +330,7 @@ html.no-js .BgGraphic + noscript {
     }
 }
 
-.Content {
+body > main {
     display: grid;
     grid-gap: $spacing-line-double 0;
 
@@ -340,7 +339,7 @@ html.no-js .BgGraphic + noscript {
     }
 }
 
-.Section {
+body > main > section {
     hanging-punctuation: allow-end;
 
     @media #{$mq-md} {
@@ -348,7 +347,7 @@ html.no-js .BgGraphic + noscript {
     }
 }
 
-.SubHeading {
+body > main > section h2 {
     margin-bottom: $spacing-line-half;
     hanging-punctuation: none;
 
@@ -361,7 +360,7 @@ html.no-js .BgGraphic + noscript {
     }
 }
 
-.PageFooter {
+body > footer {
     text-align: center;
 
     @media #{$mq-md} {
@@ -370,10 +369,11 @@ html.no-js .BgGraphic + noscript {
     }
 }
 
-.PageFooter-authorLink {
+body > footer a[title="yuheiy.com"] {
     --focus-ring-offset: 0;
 }
 
-.PageFooter-authorImage {
+body > footer yuhei-avator,
+body > footer .yuhei-avator-fallback {
     width: 4rem;
 }

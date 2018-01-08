@@ -5,7 +5,7 @@ const fallback = () => {
         return
     }
 
-    const templEl = document.querySelector('#tmpl-yuhei-avator')
+    const templEl = document.querySelector('#tmpl-yuhei-avator-fallback')
 
     document.querySelectorAll('yuhei-avator').forEach((originalEl) => {
         const replacementEl = document.importNode(templEl.content.firstElementChild, true)

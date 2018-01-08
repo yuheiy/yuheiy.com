@@ -1,11 +1,11 @@
 import 'what-input'
 import './yuhei-avator.js'
 import webComponentsFallback from './webcomponents-fallback.js'
-import PageFooter from './PageFooter.js'
+import playYuheiAvator from './play-yuhei-avator.js'
 
 document.documentElement.classList.remove('no-js')
 
 webComponentsFallback()
-PageFooter()
+playYuheiAvator()
 
 console.log('Source: https://github.com/yuheiy/yuheiy.com')
