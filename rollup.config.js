@@ -27,7 +27,7 @@ const inputConfig = {
     ],
 }
 
-const defaultConfig = [
+const moduleConfig = [
     inputConfig,
     {
         file: './src/html/main.js',
@@ -36,7 +36,7 @@ const defaultConfig = [
     },
 ]
 
-const legacyConfig = [
+const nomoduleConfig = [
     inputConfig,
     {
         file: './dist/nomodule.js',
@@ -45,4 +45,4 @@ const legacyConfig = [
     },
 ]
 
-module.exports = [defaultConfig, legacyConfig]
+module.exports = [moduleConfig, nomoduleConfig]
