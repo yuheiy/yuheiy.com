@@ -1,20 +1,19 @@
+const renderHelper = require('real-world-website-render-helper')
 const browserSync = require('browser-sync').create()
 const gulp = require('gulp')
 
 const isProd = process.argv[2] === 'build'
 
-const {
-    renderMiddleware: renderHtmlMiddleware,
-    buildAllFiles: html,
-} = require('real-world-website-render-helper')({
-    input: './src/html',
+const renderHelperConfig = {
+    input: 'src/html',
     inputExt: 'pug',
     output: 'dist',
-    task: (filepath) => {
+    outputExt: 'html',
+    task: (pathname) => {
         const pug = require('pug')
-        return pug.renderFile(filepath)
+        return pug.renderFile(pathname)
     },
-})
+}
 
 const css = () => {
     const gulpif = require('gulp-if')
@@ -60,7 +59,7 @@ const serve = (done) => {
             notify: false,
             ui: false,
             server: ['dist', 'public'],
-            middleware: renderHtmlMiddleware,
+            middleware: renderHelper.createRenderMiddleware(renderHelperConfig),
             ghostMode: false,
             open: false,
         },
@@ -90,6 +89,10 @@ gulp.task(
         watch,
     )
 )
+
+const html = () => {
+    return renderHelper.build(renderHelperConfig)
+}
 
 const copy = () => {
     return gulp.src('public/**/*').pipe(gulp.dest('dist'))

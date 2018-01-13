@@ -12,8 +12,8 @@
     "what-input": "^5.0.3"
   },
   "devDependencies": {
-    "autoprefixer": "^7.2.4",
-    "browser-sync": "^2.23.3",
+    "autoprefixer": "^7.2.5",
+    "browser-sync": "^2.23.5",
     "csswring": "^6.0.2",
     "del": "^3.0.0",
     "gh-pages": "^1.1.0",
@@ -23,11 +23,11 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.3",
     "pug": "^2.0.0-rc.4",
-    "real-world-website-render-helper": "yuheiy/real-world-website-render-helper",
-    "rollup": "^0.53.3",
+    "real-world-website-render-helper": "yuheiy/real-world-website-render-helper#182f5251f2a55b0dea02fad2fbddba53ab17934d",
+    "rollup": "^0.54.0",
     "rollup-plugin-commonjs": "^8.2.6",
-    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-node-resolve": "^3.0.2",
     "rollup-plugin-uglify": "^2.0.1",
-    "uglify-es": "^3.3.4"
+    "uglify-es": "^3.3.5"
   }
 }
