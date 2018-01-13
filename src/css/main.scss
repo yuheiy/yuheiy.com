@@ -33,7 +33,7 @@ $spacing-line-double: $spacing-line * 2;
 $spacing-char: 1rem;
 
 $width-content: 32rem;
-$width-hang: $width-content / $ratio;
+$width-hang: (2 + 0.5 + 2) * ($ratio * $ratio * 1rem);
 $width-gap-sm: $spacing-char;
 $width-gap-md: $spacing-char * 2;
 $width-gap-lg: $spacing-char * 3;
@@ -133,7 +133,7 @@ body {
     background-color: var(--color-bg);
 
     @media #{$mq-md} {
-        grid-template-columns: 1fr ($ratio * 1fr);
+        grid-template-columns: var(--width-hang) var(--width-content);
         grid-template-areas:
             "header header"
             ". content"
@@ -259,7 +259,7 @@ body > header {
     @media #{$mq-md} {
         grid-area: header;
         grid-template-areas: "hang content";
-        grid-template-columns: 1fr ($ratio * 1fr);
+        grid-template-columns: var(--width-hang) var(--width-content);
         grid-gap: 0 calc(var(--width-gap) * 2);
     }
 }
