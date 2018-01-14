@@ -75,20 +75,17 @@ const clean = () => {
 const watch = (done) => {
     gulp.watch('src/css/**/*.scss', css)
     gulp.watch('src/js/**/*.js', js)
-    gulp.watch('src/html/**').on('all', browserSync.reload)
+    gulp.watch('src/html/**/*').on('all', browserSync.reload)
     done()
 }
 
 // prettier-ignore
-gulp.task(
-    'default',
-    gulp.series(
-        clean,
-        gulp.parallel(css, js),
-        serve,
-        watch,
-    )
-)
+gulp.task('default', gulp.series(
+    clean,
+    gulp.parallel(css, js),
+    serve,
+    watch,
+))
 
 const html = () => {
     return renderHelper.build(renderHelperConfig)
@@ -99,16 +96,13 @@ const copy = () => {
 }
 
 // prettier-ignore
-gulp.task(
-    'build',
-    gulp.series(
-        clean,
-        gulp.parallel(
-            gulp.series(
-                gulp.parallel(css, js),
-                html,
-            ),
-            copy,
+gulp.task('build', gulp.series(
+    clean,
+    gulp.parallel(
+        gulp.series(
+            gulp.parallel(css, js),
+            html,
         ),
-    )
-)
+        copy,
+    ),
+))
