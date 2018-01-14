@@ -83,16 +83,9 @@ html.no-js(lang="ja")
                     h3
                         a(href="http://yuheiy.hatenablog.com/") yuhei blog
                     ol
-                        li
-                            a(href="http://yuheiy.hatenablog.com/entry/2017/12/24/195435") 【お蕎麦】富士そばへ行く！【安い・早い・うまい】
-                        li
-                            a(href="http://yuheiy.hatenablog.com/entry/2017/12/21/235948") Reactコンポーネントを単独で使うための細かいテク
-                        li
-                            a(href="http://yuheiy.hatenablog.com/entry/2017/12/13/234130") Reactコンポーネントを単独で使う
-                        li
-                            a(href="http://yuheiy.hatenablog.com/entry/2017/11/21/091035") フォーカスリングの役割とマウスユーザーに向けた対応について
-                        li
-                            a(href="http://yuheiy.hatenablog.com/entry/2017/09/21/190150") cssnextを使うべきか
+                        each post in blogPosts.slice(0, 5)
+                            li
+                                a(href=post.link)= post.title
 
         footer
             a(href="/" title="yuheiy.com")

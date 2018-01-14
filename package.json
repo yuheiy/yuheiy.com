@@ -14,6 +14,7 @@
   "devDependencies": {
     "autoprefixer": "^7.2.5",
     "browser-sync": "^2.23.5",
+    "cheerio": "^1.0.0-rc.2",
     "csswring": "^6.0.2",
     "del": "^3.0.0",
     "gh-pages": "^1.1.0",
@@ -24,6 +25,7 @@
     "gulp-sourcemaps": "^2.6.3",
     "pug": "^2.0.0-rc.4",
     "real-world-website-render-helper": "yuheiy/real-world-website-render-helper#182f5251f2a55b0dea02fad2fbddba53ab17934d",
+    "request": "^2.83.0",
     "rollup": "^0.54.0",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.2",

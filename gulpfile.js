@@ -4,14 +4,35 @@ const gulp = require('gulp')
 
 const isProd = process.argv[2] === 'build'
 
+const blogPosts = new Promise((resolve, reject) => {
+    const request = require('request')
+    const cheerio = require('cheerio')
+
+    request('http://yuheiy.hatenablog.com/feed', (err, _res, body) => {
+        if (err) {
+            return reject(err)
+        }
+
+        const $ = cheerio.load(body, { xmlMode: true })
+        const posts = $('entry').map((_i, el) => {
+            const title = $('title', el).text()
+            const link = $('link', el).attr('href')
+            return { title, link }
+        })
+
+        resolve(posts)
+    })
+})
+
 const renderHelperConfig = {
     input: 'src/html',
     inputExt: 'pug',
     output: 'dist',
     outputExt: 'html',
-    task: (pathname) => {
+    task: async (pathname) => {
         const pug = require('pug')
-        return pug.renderFile(pathname)
+        const locals = { blogPosts: await blogPosts }
+        return pug.renderFile(pathname, locals)
     },
 }
 
