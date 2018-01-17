@@ -364,6 +364,10 @@ body > footer a[title="yuheiy.com"] {
     --focus-ring-offset: 0;
 }
 
+body > footer a[title="yuheiy.com"]:hover {
+    --yuhei-avator__color-bg: $color-white-dark;
+}
+
 body > footer yuhei-avator,
 body > footer .yuhei-avator-fallback {
     width: 4rem;
