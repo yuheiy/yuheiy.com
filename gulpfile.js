@@ -96,7 +96,7 @@ const clean = () => {
 const watch = (done) => {
     gulp.watch('src/css/**/*.scss', css)
     gulp.watch('src/js/**/*.js', js)
-    gulp.watch('src/html/**/*').on('all', browserSync.reload)
+    gulp.watch(['src/html/**/*', 'public/**/*']).on('all', browserSync.reload)
     done()
 }
 
