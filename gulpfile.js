@@ -16,8 +16,8 @@ const blogPosts = new Promise((resolve, reject) => {
         const $ = cheerio.load(body, { xmlMode: true })
         const posts = $('entry').map((_i, el) => {
             const title = $('title', el).text()
-            const link = $('link', el).attr('href')
-            return { title, link }
+            const url = $('link', el).attr('href')
+            return { title, url }
         })
 
         resolve(posts)
