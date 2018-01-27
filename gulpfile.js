@@ -4,34 +4,31 @@ const gulp = require('gulp')
 
 const isProd = process.argv[2] === 'build'
 
-const blogPosts = new Promise((resolve, reject) => {
-    const request = require('request')
+let blogPosts = null
+
+const loadBlogPosts = async () => {
+    const fetch = require('node-fetch')
     const cheerio = require('cheerio')
 
-    request('http://yuheiy.hatenablog.com/feed', (err, _res, body) => {
-        if (err) {
-            return reject(err)
-        }
-
-        const $ = cheerio.load(body, { xmlMode: true })
-        const posts = $('entry').map((_i, el) => {
-            const title = $('title', el).text()
-            const url = $('link', el).attr('href')
-            return { title, url }
-        })
-
-        resolve(posts)
+    const res = await fetch('http://yuheiy.hatenablog.com/feed')
+    const body = await res.text()
+    const $ = cheerio.load(body, { xmlMode: true })
+    const posts = $('entry').map((_i, el) => {
+        const title = $('title', el).text()
+        const url = $('link', el).attr('href')
+        return { title, url }
     })
-})
+    blogPosts = posts
+}
 
 const renderHelperConfig = {
     input: 'src/html',
     inputExt: 'pug',
     output: 'dist',
     outputExt: 'html',
-    task: async (pathname) => {
+    task: (pathname) => {
         const pug = require('pug')
-        const locals = { blogPosts: await blogPosts }
+        const locals = { blogPosts }
         return pug.renderFile(pathname, locals)
     },
 }
@@ -103,7 +100,7 @@ const watch = (done) => {
 // prettier-ignore
 gulp.task('default', gulp.series(
     clean,
-    gulp.parallel(css, js),
+    gulp.parallel(loadBlogPosts, css, js),
     serve,
     watch,
 ))
@@ -121,7 +118,7 @@ gulp.task('build', gulp.series(
     clean,
     gulp.parallel(
         gulp.series(
-            gulp.parallel(css, js),
+            gulp.parallel(loadBlogPosts, css, js),
             html,
         ),
         copy,
