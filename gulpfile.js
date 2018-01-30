@@ -7,15 +7,12 @@ const isProd = process.argv[2] === 'build'
 let blogPosts = null
 
 const loadBlogPosts = async () => {
-    const fetch = require('node-fetch')
-    const cheerio = require('cheerio')
+    const { JSDOM } = require('jsdom')
 
-    const res = await fetch('http://yuheiy.hatenablog.com/feed')
-    const body = await res.text()
-    const $ = cheerio.load(body, { xmlMode: true })
-    const posts = $('entry').map((_i, el) => {
-        const title = $('title', el).text()
-        const url = $('link', el).attr('href')
+    const dom = await JSDOM.fromURL('http://yuheiy.hatenablog.com/feed')
+    const posts = Array.from(dom.window.document.querySelectorAll('entry')).map((entryEl) => {
+        const title = entryEl.querySelector('title').textContent
+        const url = entryEl.querySelector('link').getAttribute('href')
         return { title, url }
     })
     blogPosts = posts
