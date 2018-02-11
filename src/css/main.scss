@@ -66,6 +66,7 @@ $mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2) * $text-ratio-ro
 
     --font-stack-body: "YuGothic", sans-serif;
     --font-stack-header: "Yu Mincho", serif;
+    --font-stack-code: "Menlo", "Consolas", monospace;
 
     --text-size-scale: $ratio-secondary;
     --text-size: 1rem;
@@ -182,7 +183,8 @@ p {
     margin-bottom: 0;
 }
 
-ol {
+ol,
+ul {
     margin-top: 0;
     margin-bottom: 0;
     list-style-type: none;
@@ -204,7 +206,36 @@ p + p {
     margin-top: $spacing-line;
 }
 
-h3 + ol {
+h3 + ol,
+h3 + ul {
+    margin-top: $spacing-line-half;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+dt::before {
+    content: "-";
+    display: inline-block;
+    width: 1em;
+    color: $color-gray;
+}
+
+dt:nth-child(n + 2) {
+    margin-top: $spacing-line-half;
+}
+
+dd {
+    margin-left: 0;
+}
+
+dd {
+    margin-left: 1em;
+}
+
+h3 + dl {
     margin-top: $spacing-line-half;
 }
 
@@ -222,6 +253,13 @@ a:hover {
 a:visited {
     --color-link: $color-melanzane;
     --color-link-underline: $color-melanzane-light;
+}
+
+code {
+    padding-right: 0.125em;
+    padding-left: 0.125em;
+    font-family: var(--font-stack-code);
+    background-color: $color-white-dark;
 }
 
 html.no-js yuhei-avator {
@@ -349,6 +387,7 @@ body > main > section h2 {
         right: 100%;
         width: var(--width-hang);
         margin-right: var(--width-gap);
+        margin-bottom: 0;
         text-align: end;
     }
 }
