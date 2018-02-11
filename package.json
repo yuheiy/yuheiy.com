@@ -7,12 +7,12 @@
     "deploy": "gh-pages -d dist/"
   },
   "dependencies": {
-    "lodash-es": "^4.17.4",
+    "lodash-es": "^4.17.5",
     "skatejs": "^5.1.1",
-    "what-input": "^5.0.4"
+    "what-input": "^5.0.5"
   },
   "devDependencies": {
-    "autoprefixer": "^7.2.5",
+    "autoprefixer": "^7.2.6",
     "browser-sync": "^2.23.6",
     "csswring": "^6.0.2",
     "del": "^3.0.0",
@@ -25,7 +25,7 @@
     "jsdom": "^11.6.2",
     "pug": "^2.0.0-rc.4",
     "real-world-website-render-helper": "yuheiy/real-world-website-render-helper#182f5251f2a55b0dea02fad2fbddba53ab17934d",
-    "rollup": "^0.55.1",
+    "rollup": "^0.55.5",
     "rollup-plugin-commonjs": "^8.3.0",
     "rollup-plugin-node-resolve": "^3.0.2",
     "rollup-plugin-uglify": "^3.0.0"
