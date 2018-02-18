@@ -27,9 +27,11 @@ html.no-js(lang="ja")
         link(rel="canonical" href="/")
         style
             include main.css
+        script.
+            document.documentElement.classList.remove('no-js')
         script(type="module")
             include main.js
-        script(nomodule src="/nomodule.js" defer)
+        script(nomodule src="/legacy.js" defer)
         script.
             (function(d) {
                 var config = {

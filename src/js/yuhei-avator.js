@@ -1,7 +1,7 @@
 import random from 'lodash-es/random'
 import range from 'lodash-es/range'
 import { withComponent } from 'skatejs/dist/esnext/index.js'
-import { canUseWebComponents } from './utils.js'
+import { canUseWebComponents } from './util.js'
 
 const STAGE_WIDTH = 1024
 const STAGE_HEIGHT = 1024

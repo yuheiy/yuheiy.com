@@ -1,17 +1,18 @@
-import 'what-input'
 import './yuhei-avator.js'
-import throttle from 'lodash-es/throttle'
-import { hasTouch, canUseWebComponents, shouldReduceMotion } from './utils.js'
+import whatInput from 'what-input'
+import throttle from 'raf-throttle'
+import { canUseWebComponents, shouldReduceMotion } from './util.js'
 
-document.documentElement.classList.remove('no-js')
+const isMouse = () => whatInput.ask() === 'mouse' || whatInput.ask('intent') === 'mouse'
+const isKeyboard = () => whatInput.ask() === 'keyboard'
 
 if (canUseWebComponents && !shouldReduceMotion) {
     const anchorEl = document.querySelector('body > footer a[title="yuheiy.com"]')
     const avatorEl = anchorEl.querySelector('yuhei-avator')
 
     const checkActivity = () => {
-        const isHovered = !hasTouch && anchorEl.matches(':hover')
-        const isKeyboardFocused = anchorEl.matches('html[data-whatinput="keyboard"] :focus')
+        const isHovered = isMouse() && anchorEl.matches(':hover')
+        const isKeyboardFocused = isKeyboard() && document.activeElement === anchorEl
         const shouldPlay = isHovered || isKeyboardFocused
 
         if (shouldPlay) {
@@ -23,7 +24,7 @@ if (canUseWebComponents && !shouldReduceMotion) {
 
     // mouse
     document.addEventListener('blur', checkActivity)
-    document.addEventListener('mousemove', throttle(checkActivity, 1000 / 5))
+    document.addEventListener('mousemove', throttle(checkActivity))
     anchorEl.addEventListener('mouseenter', checkActivity)
     anchorEl.addEventListener('mouseleave', checkActivity)
 

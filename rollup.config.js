@@ -23,7 +23,7 @@ const inputConfig = {
     ],
 }
 
-const moduleConfig = [
+const modernConfig = [
     inputConfig,
     {
         file: './src/html/main.js',
@@ -32,13 +32,13 @@ const moduleConfig = [
     },
 ]
 
-const nomoduleConfig = [
+const legacyConfig = [
     inputConfig,
     {
-        file: './dist/nomodule.js',
+        file: './dist/legacy.js',
         format: 'iife',
         sourcemap: !isProd && 'inline',
     },
 ]
 
-module.exports = [moduleConfig, nomoduleConfig]
+module.exports = [modernConfig, legacyConfig]
