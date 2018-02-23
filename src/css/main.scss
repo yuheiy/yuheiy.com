@@ -330,9 +330,8 @@ body > header h1 rt {
 
 body > header span[lang="en"] {
     position: relative;
-    top: 0.125em;
+    top: 0.1625em;
     margin-top: $spacing-line-half;
-    margin-left: 0.03125em;
     font-size: var(--text-size-2);
     color: $color-gray;
 
@@ -341,7 +340,6 @@ body > header span[lang="en"] {
         display: block;
         margin-top: $spacing-line;
         margin-right: -1.5rem;
-        margin-left: 0;
     }
 }
 

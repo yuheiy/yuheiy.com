@@ -88,9 +88,18 @@ const clean = () => {
 }
 
 const watch = (done) => {
-    gulp.watch('src/css/**/*.scss', css)
-    gulp.watch('src/js/**/*.js', js)
-    gulp.watch(['src/html/**/*', 'public/**/*']).on('all', browserSync.reload)
+    const options = {
+        delay: 50,
+    }
+
+    const reload = (done) => {
+        browserSync.reload()
+        done()
+    }
+
+    gulp.watch('src/css/**/*.scss', options, css)
+    gulp.watch('src/js/**/*.js', options, js)
+    gulp.watch(['src/html/**/*', 'public/**/*'], options, reload)
     done()
 }
 
