@@ -3725,9 +3725,9 @@ readdirp@^2.0.0:
     readable-stream "^2.0.2"
     set-immediate-shim "^1.0.1"
 
-real-world-website-render-helper@yuheiy/real-world-website-render-helper#f45bb13b0b417714409cfb9de9ff381218e03822:
-  version "0.0.2"
-  resolved "https://codeload.github.com/yuheiy/real-world-website-render-helper/tar.gz/f45bb13b0b417714409cfb9de9ff381218e03822"
+real-world-website-render-helper@yuheiy/real-world-website-render-helper#983ad565bf1b5b26e107c4254d3c16ba97d80d68:
+  version "0.0.3"
+  resolved "https://codeload.github.com/yuheiy/real-world-website-render-helper/tar.gz/983ad565bf1b5b26e107c4254d3c16ba97d80d68"
   dependencies:
     fast-glob "^2.0.4"
     make-dir "^1.2.0"

@@ -25,7 +25,7 @@
     "gulp-sourcemaps": "^2.6.4",
     "jsdom": "^11.6.2",
     "pug": "^2.0.0-rc.4",
-    "real-world-website-render-helper": "yuheiy/real-world-website-render-helper#f45bb13b0b417714409cfb9de9ff381218e03822",
+    "real-world-website-render-helper": "yuheiy/real-world-website-render-helper#983ad565bf1b5b26e107c4254d3c16ba97d80d68",
     "rollup": "^0.56.2",
     "rollup-plugin-commonjs": "^8.3.0",
     "rollup-plugin-node-resolve": "^3.0.3",
