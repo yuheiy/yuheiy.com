@@ -23,10 +23,10 @@ const renderHelperConfig = {
     inputExt: 'pug',
     output: 'dist',
     outputExt: 'html',
-    task: (pathname) => {
+    render: ({ src, filename }) => {
         const pug = require('pug')
-        const locals = { blogPosts }
-        return pug.renderFile(pathname, locals)
+        const locals = { blogPosts, filename, basedir: 'src/html' }
+        return pug.render(src, locals)
     },
 }
 
