@@ -120,7 +120,7 @@ const html = () => {
 }
 
 const copy = () => {
-    return gulp.src('public/**/*').pipe(gulp.dest('dist'))
+    return gulp.src('public/**/*', { dot: true }).pipe(gulp.dest('dist'))
 }
 
 // prettier-ignore
