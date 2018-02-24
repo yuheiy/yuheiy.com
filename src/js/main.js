@@ -3,16 +3,20 @@ import whatInput from 'what-input'
 import throttle from 'raf-throttle'
 import { canUseWebComponents, shouldReduceMotion } from './util.js'
 
-const isMouse = () => whatInput.ask() === 'mouse' || whatInput.ask('intent') === 'mouse'
+const isMouse = () =>
+    whatInput.ask() === 'mouse' || whatInput.ask('intent') === 'mouse'
 const isKeyboard = () => whatInput.ask() === 'keyboard'
 
 if (canUseWebComponents && !shouldReduceMotion) {
-    const anchorEl = document.querySelector('body > footer a[title="yuheiy.com"]')
+    const anchorEl = document.querySelector(
+        'body > footer a[title="yuheiy.com"]',
+    )
     const avatorEl = anchorEl.querySelector('yuhei-avator')
 
     const checkActivity = () => {
         const isHovered = isMouse() && anchorEl.matches(':hover')
-        const isKeyboardFocused = isKeyboard() && document.activeElement === anchorEl
+        const isKeyboardFocused =
+            isKeyboard() && document.activeElement === anchorEl
         const shouldPlay = isHovered || isKeyboardFocused
 
         if (shouldPlay) {
@@ -37,7 +41,10 @@ if (!canUseWebComponents) {
     const tmplEl = document.querySelector('#tmpl-yuhei-avator-fallback')
 
     document.querySelectorAll('yuhei-avator').forEach((originalEl) => {
-        const replacementEl = document.importNode(tmplEl.content.firstElementChild, true)
+        const replacementEl = document.importNode(
+            tmplEl.content.firstElementChild,
+            true,
+        )
         ;[...originalEl.attributes].forEach(({ name, value }) => {
             replacementEl.setAttribute(name, value)
         })

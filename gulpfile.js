@@ -9,12 +9,16 @@ let blogPosts = null
 const loadBlogPosts = async () => {
     const { JSDOM } = require('jsdom')
 
-    const { window: { document } } = await JSDOM.fromURL('http://yuheiy.hatenablog.com/feed')
-    const posts = Array.from(document.querySelectorAll('entry')).map((entryEl) => {
-        const title = entryEl.querySelector('title').textContent
-        const url = entryEl.querySelector('link').getAttribute('href')
-        return { title, url }
-    })
+    const { window: { document } } = await JSDOM.fromURL(
+        'http://yuheiy.hatenablog.com/feed',
+    )
+    const posts = Array.from(document.querySelectorAll('entry')).map(
+        (entryEl) => {
+            const title = entryEl.querySelector('title').textContent
+            const url = entryEl.querySelector('link').getAttribute('href')
+            return { title, url }
+        },
+    )
     blogPosts = posts
 }
 

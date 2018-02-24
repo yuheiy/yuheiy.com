@@ -94,7 +94,10 @@ class YuheiAvator extends withComponent() {
             <svg viewBox="0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}" preserveAspectRatio="xMidYMid slice" role="img">
                 <rect width="${STAGE_WIDTH}" height="${STAGE_HEIGHT}"></rect>
                 ${lines
-                    .map((line) => `<polyline points="${line.toPointsAttrVal()}"></polyline>`)
+                    .map(
+                        (line) =>
+                            `<polyline points="${line.toPointsAttrVal()}"></polyline>`,
+                    )
                     .join('')}
             </svg>
         `
