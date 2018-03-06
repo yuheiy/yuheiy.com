@@ -12,20 +12,20 @@ const minMoveY = STAGE_HEIGHT / 10 * -1
 const maxMoveY = STAGE_HEIGHT / 10
 
 const createLine = () => {
-    const startX = 0
-    const startY = STAGE_HEIGHT / 2
-    const points = [[startX, startY]]
-    let currentX = startX
-    let currentY = startY
-    while (currentX < STAGE_WIDTH) {
-        currentX += random(minMoveX, maxMoveX)
-        currentY += random(minMoveY, maxMoveY)
-        points.push([currentX, currentY])
-    }
-    return {
-        points,
-        toPointsAttrVal: () => points.map((point) => point.join(',')).join(' '),
-    }
+  const startX = 0
+  const startY = STAGE_HEIGHT / 2
+  const points = [[startX, startY]]
+  let currentX = startX
+  let currentY = startY
+  while (currentX < STAGE_WIDTH) {
+    currentX += random(minMoveX, maxMoveX)
+    currentY += random(minMoveY, maxMoveY)
+    points.push([currentX, currentY])
+  }
+  return {
+    points,
+    toPointsAttrVal: () => points.map((point) => point.join(',')).join(' '),
+  }
 }
 
 const createLines = () => range(3).map(createLine)
@@ -33,40 +33,40 @@ const createLines = () => range(3).map(createLine)
 const ANIMATION_REFRESH_RATE = 1000 / 15
 
 class YuheiAvator extends withComponent() {
-    constructor() {
-        super()
-        this._isPlaying = false
-        this._timerId = null
-        this.updateLines = this.updateLines.bind(this)
+  constructor() {
+    super()
+    this._isPlaying = false
+    this._timerId = null
+    this.updateLines = this.updateLines.bind(this)
 
-        this.updateLines()
+    this.updateLines()
+  }
+
+  updateLines() {
+    this.state = { lines: createLines() }
+  }
+
+  play() {
+    if (this._isPlaying) {
+      return
     }
 
-    updateLines() {
-        this.state = { lines: createLines() }
+    this.updateLines()
+    this._timerId = setInterval(this.updateLines, ANIMATION_REFRESH_RATE)
+    this._isPlaying = true
+  }
+
+  stop() {
+    if (!this._isPlaying) {
+      return
     }
 
-    play() {
-        if (this._isPlaying) {
-            return
-        }
+    clearTimeout(this._timerId)
+    this._isPlaying = false
+  }
 
-        this.updateLines()
-        this._timerId = setInterval(this.updateLines, ANIMATION_REFRESH_RATE)
-        this._isPlaying = true
-    }
-
-    stop() {
-        if (!this._isPlaying) {
-            return
-        }
-
-        clearTimeout(this._timerId)
-        this._isPlaying = false
-    }
-
-    render({ state: { lines } }) {
-        return `
+  render({ state: { lines } }) {
+    return `
             <style>
                 :host {
                     contain: content;
@@ -94,16 +94,16 @@ class YuheiAvator extends withComponent() {
             <svg viewBox="0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}" preserveAspectRatio="xMidYMid slice" role="img">
                 <rect width="${STAGE_WIDTH}" height="${STAGE_HEIGHT}"></rect>
                 ${lines
-                    .map(
-                        (line) =>
-                            `<polyline points="${line.toPointsAttrVal()}"></polyline>`,
-                    )
-                    .join('')}
+                  .map(
+                    (line) =>
+                      `<polyline points="${line.toPointsAttrVal()}"></polyline>`,
+                  )
+                  .join('')}
             </svg>
         `
-    }
+  }
 }
 
 if (canUseWebComponents) {
-    customElements.define('yuhei-avator', YuheiAvator)
+  customElements.define('yuhei-avator', YuheiAvator)
 }

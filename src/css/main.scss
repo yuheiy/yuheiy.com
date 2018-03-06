@@ -46,371 +46,368 @@ $mq-md: "(min-width: #{(($width-wrapper-md + $width-gap-lg * 2) * $text-ratio-ro
 $mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2) * $text-ratio-root-lg) / 1rem * 1em})";
 
 @mixin type-header {
-    font-family: var(--font-stack-header);
-    font-kerning: auto;
-    font-feature-settings: "palt" 1;
-    line-height: $line-height-header;
-    color: $color-black-light;
+  font-family: var(--font-stack-header);
+  font-kerning: auto;
+  font-feature-settings: "palt" 1;
+  line-height: $line-height-header;
+  color: $color-black-light;
 }
 
 @mixin type-antialiase {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 :root {
-    --color-fg: $color-black;
-    --color-bg: $color-white;
-    --color-link: $color-orient;
-    --color-link-underline: $color-orient-light;
+  --color-fg: $color-black;
+  --color-bg: $color-white;
+  --color-link: $color-orient;
+  --color-link-underline: $color-orient-light;
 
-    --font-stack-body: "YuGothic", sans-serif;
-    --font-stack-header: "Yu Mincho", serif;
-    --font-stack-code: "Menlo", "Consolas", monospace;
+  --font-stack-body: "YuGothic", sans-serif;
+  --font-stack-header: "Yu Mincho", serif;
+  --font-stack-code: "Menlo", "Consolas", monospace;
 
-    --text-size-scale: $ratio-secondary;
-    --text-size: 1rem;
-    --text-size-2: calc((var(--text-size-scale) + 1) / 2 * var(--text-size));
-    --text-size-3: calc(var(--text-size-scale) * var(--text-size));
-    --text-size-4: calc(
+  --text-size-scale: $ratio-secondary;
+  --text-size: 1rem;
+  --text-size-2: calc((var(--text-size-scale) + 1) / 2 * var(--text-size));
+  --text-size-3: calc(var(--text-size-scale) * var(--text-size));
+  --text-size-4: calc(
+    (var(--text-size-scale) * var(--text-size-scale) + var(--text-size-scale)) /
+      2 * var(--text-size)
+  );
+  --text-size-5: calc(
+    var(--text-size-scale) * var(--text-size-scale) * var(--text-size)
+  );
 
-            (
-                var(--text-size-scale) * var(--text-size-scale) +
-                    var(--text-size-scale)
-            ) / 2 * var(--text-size)
+  --width-content: $width-content;
+  --width-gap: $width-gap-sm;
+  --width-wrapper: var(--width-content);
+
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 4px;
+
+  @media #{$mq-sm} {
+    --width-gap: $width-gap-md;
+  }
+
+  @media #{$mq-md} {
+    --text-size-scale: $ratio;
+
+    --width-hang: $width-hang;
+    --width-gap: $width-gap-lg;
+    --width-wrapper: calc(
+      var(--width-hang) + var(--width-gap) + var(--width-content)
     );
-    --text-size-5: calc(
-        var(--text-size-scale) * var(--text-size-scale) * var(--text-size)
-    );
-
-    --width-content: $width-content;
-    --width-gap: $width-gap-sm;
-    --width-wrapper: var(--width-content);
-
-    --focus-ring-width: 3px;
-    --focus-ring-offset: 4px;
-
-    @media #{$mq-sm} {
-        --width-gap: $width-gap-md;
-    }
-
-    @media #{$mq-md} {
-        --text-size-scale: $ratio;
-
-        --width-hang: $width-hang;
-        --width-gap: $width-gap-lg;
-        --width-wrapper: calc(
-            var(--width-hang) + var(--width-gap) + var(--width-content)
-        );
-    }
+  }
 }
 
 html {
-    font-family: var(--font-stack-body);
-    line-height: $line-height-body;
+  font-family: var(--font-stack-body);
+  line-height: $line-height-body;
 
-    @media #{$mq-sm} {
-        font-size: percentage($text-ratio-root-md);
-    }
+  @media #{$mq-sm} {
+    font-size: percentage($text-ratio-root-md);
+  }
 
-    @media #{$mq-lg} {
-        font-size: percentage($text-ratio-root-lg);
-    }
+  @media #{$mq-lg} {
+    font-size: percentage($text-ratio-root-lg);
+  }
 }
 
 html[data-whatinput="initial"],
 html[data-whatinput="mouse"],
 html[data-whatinput="touch"] {
-    --focus-ring-width: 0;
+  --focus-ring-width: 0;
 }
 
 html.wf-active {
-    --font-stack-header: "heisei-mincho-std", serif;
+  --font-stack-header: "heisei-mincho-std", serif;
 }
 
 body {
-    display: grid;
-    grid-template-columns: [full-start] minmax(0, var(--width-content)) [full-end];
-    grid-template-areas: "content";
-    grid-row-gap: $spacing-line-double;
-    justify-content: center;
-    margin: $spacing-line 1rem;
-    font-kerning: none;
-    color: var(--color-fg);
-    background-color: var(--color-bg);
+  display: grid;
+  grid-template-columns: [full-start] minmax(0, var(--width-content)) [full-end];
+  grid-template-areas: "content";
+  grid-row-gap: $spacing-line-double;
+  justify-content: center;
+  margin: $spacing-line 1rem;
+  font-kerning: none;
+  color: var(--color-fg);
+  background-color: var(--color-bg);
 
-    @media #{$mq-md} {
-        grid-template-columns:
-            [full-start] var(--width-hang) var(--width-content)
-            [full-end];
-        grid-template-areas: "hang content";
-        grid-column-gap: var(--width-gap);
-        margin-top: $spacing-line-double;
-        margin-bottom: $spacing-line-double;
-    }
+  @media #{$mq-md} {
+    grid-template-columns:
+      [full-start] var(--width-hang) var(--width-content)
+      [full-end];
+    grid-template-areas: "hang content";
+    grid-column-gap: var(--width-gap);
+    margin-top: $spacing-line-double;
+    margin-bottom: $spacing-line-double;
+  }
 }
 
 :focus {
-    outline: $color-bay-of-many var(--focus-ring-width) solid;
-    outline-offset: var(--focus-ring-offset);
-    transition: outline-width 100ms ease-out;
+  outline: $color-bay-of-many var(--focus-ring-width) solid;
+  outline-offset: var(--focus-ring-offset);
+  transition: outline-width 100ms ease-out;
 }
 
 h1,
 h2,
 h3 {
-    @include type-header;
-    @include type-antialiase;
-    margin-top: 0;
-    margin-bottom: 0;
+  @include type-header;
+  @include type-antialiase;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 h1 {
-    margin-left: -0.03125em;
-    font-size: var(--text-size-5);
+  margin-left: -0.03125em;
+  font-size: var(--text-size-5);
 
-    @media #{$mq-md} {
-        margin-left: 0;
-    }
+  @media #{$mq-md} {
+    margin-left: 0;
+  }
 }
 
 h2 {
-    margin-left: -0.0625em;
-    font-size: var(--text-size-4);
+  margin-left: -0.0625em;
+  font-size: var(--text-size-4);
 
-    @media #{$mq-md} {
-        margin-left: 0;
-    }
+  @media #{$mq-md} {
+    margin-left: 0;
+  }
 }
 
 h3 {
-    font-size: var(--text-size-3);
+  font-size: var(--text-size-3);
 }
 
 p {
-    margin-top: 0;
-    margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 ol,
 ul {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 1em;
-    list-style-type: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 1em;
+  list-style-type: none;
 }
 
 li::before {
-    content: "-";
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-    color: $color-gray;
+  content: "-";
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  color: $color-gray;
 }
 
 p + p {
-    margin-top: $spacing-line;
+  margin-top: $spacing-line;
 }
 
 h3 + ol,
 h3 + ul {
-    margin-top: $spacing-line-half;
+  margin-top: $spacing-line-half;
 }
 
 dl {
-    margin-top: 0;
-    margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 dt::before {
-    content: "-";
-    display: inline-block;
-    width: 1em;
-    color: $color-gray;
+  content: "-";
+  display: inline-block;
+  width: 1em;
+  color: $color-gray;
 }
 
 dt:nth-child(n + 2) {
-    margin-top: $spacing-line-half;
+  margin-top: $spacing-line-half;
 }
 
 dd {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 dd {
-    margin-left: 1em;
+  margin-left: 1em;
 }
 
 h3 + dl {
-    margin-top: $spacing-line-half;
+  margin-top: $spacing-line-half;
 }
 
 a {
-    color: var(--color-link);
-    text-decoration-color: var(--color-link-underline);
+  color: var(--color-link);
+  text-decoration-color: var(--color-link-underline);
 }
 
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 // It currently does not work with Chrome and Safari, but it will fix in a while.
 // https://bugs.chromium.org/p/chromium/issues/detail?id=768220
 a:visited {
-    --color-link: $color-melanzane;
-    --color-link-underline: $color-melanzane-light;
+  --color-link: $color-melanzane;
+  --color-link-underline: $color-melanzane-light;
 }
 
 code {
-    font-family: var(--font-stack-code);
+  font-family: var(--font-stack-code);
 }
 
 html.no-js yuhei-avator {
-    display: none !important;
+  display: none !important;
 }
 
 body > yuhei-avator,
 body > .yuhei-avator-fallback,
 html.no-js body > yuhei-avator + noscript .yuhei-avator-fallback {
-    --yuhei-avator__color-fg: $color-white-dark;
-    --yuhei-avator__color-bg: transparent;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
+  --yuhei-avator__color-fg: $color-white-dark;
+  --yuhei-avator__color-bg: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
 }
 
 html.no-js body > yuhei-avator + noscript {
-    position: absolute; // for grid
+  position: absolute; // for grid
 }
 
 body > header {
-    display: grid;
-    grid-column: full;
-    grid-row-gap: $spacing-line;
+  display: grid;
+  grid-column: full;
+  grid-row-gap: $spacing-line;
 
-    @media #{$mq-md} {
-        grid-template-columns: inherit;
-        grid-column-gap: inherit;
-    }
+  @media #{$mq-md} {
+    grid-template-columns: inherit;
+    grid-column-gap: inherit;
+  }
 }
 
 body > header h1 {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    margin-left: -0.0625em;
-    line-height: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-left: -0.0625em;
+  line-height: 1;
 
-    @media #{$mq-md} {
-        display: block;
-        text-align: end;
-    }
+  @media #{$mq-md} {
+    display: block;
+    text-align: end;
+  }
 }
 
 body > header h1 ruby {
-    display: inline-flex;
-    flex-direction: column-reverse;
-    margin-right: 0.5em;
+  display: inline-flex;
+  flex-direction: column-reverse;
+  margin-right: 0.5em;
 }
 
 body > header h1 ruby:last-of-type {
-    margin-right: 0.625em;
+  margin-right: 0.625em;
 
-    @media #{$mq-md} {
-        margin-right: 0;
-    }
+  @media #{$mq-md} {
+    margin-right: 0;
+  }
 }
 
 body > header h1 rt {
-    margin-bottom: 0.25em;
-    font-weight: normal;
-    -webkit-font-smoothing: auto;
-    -moz-osx-font-smoothing: auto;
-    line-height: inherit;
+  margin-bottom: 0.25em;
+  font-weight: normal;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  line-height: inherit;
 
-    @media #{$mq-md} {
-        text-align: start; // for firefox
-    }
+  @media #{$mq-md} {
+    text-align: start; // for firefox
+  }
 }
 
 body > header span[lang="en"] {
-    position: relative;
-    top: 0.25ex;
-    margin-top: $spacing-line-half;
-    font-size: var(--text-size-2);
-    color: $color-gray;
+  position: relative;
+  top: 0.25ex;
+  margin-top: $spacing-line-half;
+  font-size: var(--text-size-2);
+  color: $color-gray;
 
-    @media #{$mq-md} {
-        position: static;
-        display: block;
-        margin-top: $spacing-line;
-        margin-right: -1.5rem;
-    }
+  @media #{$mq-md} {
+    position: static;
+    display: block;
+    margin-top: $spacing-line;
+    margin-right: -1.5rem;
+  }
 }
 
 body > header p {
-    @include type-header;
-    font-size: var(--text-size-2);
-    line-height: unset;
-    hanging-punctuation: allow-end;
+  @include type-header;
+  font-size: var(--text-size-2);
+  line-height: unset;
+  hanging-punctuation: allow-end;
 
-    @media #{$mq-md} {
-        $rt-height: "(var(--text-size-5) * #{0.5 * 1.25})";
-        $line-gap-top: "(var(--text-size-2) * #{($line-height-body - 1) / 2})";
-        margin-top: calc(#{$rt-height} - #{$line-gap-top});
-    }
+  @media #{$mq-md} {
+    $rt-height: "(var(--text-size-5) * #{0.5 * 1.25})";
+    $line-gap-top: "(var(--text-size-2) * #{($line-height-body - 1) / 2})";
+    margin-top: calc(#{$rt-height} - #{$line-gap-top});
+  }
 }
 
 body > main {
-    display: grid;
-    grid-column: content;
-    grid-row-gap: $spacing-line-double;
+  display: grid;
+  grid-column: content;
+  grid-row-gap: $spacing-line-double;
 }
 
 body > main > section {
-    hanging-punctuation: allow-end;
+  hanging-punctuation: allow-end;
 
-    @media #{$mq-md} {
-        position: relative;
-    }
+  @media #{$mq-md} {
+    position: relative;
+  }
 }
 
 body > main > section h2 {
-    margin-bottom: $spacing-line-half;
-    hanging-punctuation: none;
+  margin-bottom: $spacing-line-half;
+  hanging-punctuation: none;
 
-    @media #{$mq-md} {
-        position: absolute;
-        right: 100%;
-        width: var(--width-hang);
-        margin-right: var(--width-gap);
-        margin-bottom: 0;
-        text-align: end;
-    }
+  @media #{$mq-md} {
+    position: absolute;
+    right: 100%;
+    width: var(--width-hang);
+    margin-right: var(--width-gap);
+    margin-bottom: 0;
+    text-align: end;
+  }
 }
 
 body > footer {
-    grid-column: content;
-    text-align: center;
+  grid-column: content;
+  text-align: center;
 
-    @media #{$mq-md} {
-        text-align: start;
-    }
+  @media #{$mq-md} {
+    text-align: start;
+  }
 }
 
 body > footer a[title="yuheiy.com"] {
-    --focus-ring-offset: 0;
+  --focus-ring-offset: 0;
 }
 
 body > footer a[title="yuheiy.com"]:hover {
-    --yuhei-avator__color-bg: $color-white-dark;
+  --yuhei-avator__color-bg: $color-white-dark;
 }
 
 body > footer yuhei-avator,
 body > footer .yuhei-avator-fallback {
-    width: 4rem;
+  width: 4rem;
 }
