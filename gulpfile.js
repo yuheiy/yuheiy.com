@@ -1,14 +1,30 @@
-const renderHelper = require('real-world-website-render-helper')
-const browserSync = require('browser-sync').create()
+const path = require('path')
+const fs = require('fs')
+const { promisify } = require('util')
 const gulp = require('gulp')
+const browserSync = require('browser-sync')
+const { JSDOM } = require('jsdom')
+const renderHelper = require('real-world-website-render-helper')
+const pug = require('pug')
+const sass = require('node-sass')
+const globImporter = require('node-sass-glob-importer')
+const red = require('ansi-red')
+const postcss = require('postcss')
+const autoprefixer = require('autoprefixer')
+const csswring = require('csswring')
+const { rollup } = require('rollup')
+const rollupConfigs = require('./rollup.config')
+const del = require('del')
+
+const writeFileAsync = promisify(fs.writeFile)
+
+const bs = browserSync.create()
 
 const isProd = process.argv[2] === 'build'
 
 let blogPosts = null
 
 const loadBlogPosts = async () => {
-  const { JSDOM } = require('jsdom')
-
   const { window: { document } } = await JSDOM.fromURL(
     'http://yuheiy.hatenablog.com/feed',
   )
@@ -28,7 +44,6 @@ const renderHelperConfig = {
   output: 'dist',
   outputExt: 'html',
   render: ({ src, filename }) => {
-    const pug = require('pug')
     return pug.render(src.toString(), {
       blogPosts,
       filename,
@@ -37,36 +52,54 @@ const renderHelperConfig = {
   },
 }
 
-const css = () => {
-  const gulpif = require('gulp-if')
-  const sourcemaps = require('gulp-sourcemaps')
-  const sass = require('gulp-sass')
-  const postcss = require('gulp-postcss')
-  const autoprefixer = require('autoprefixer')
-  const csswring = require('csswring')
+const css = async () => {
+  let sassResult
+  try {
+    sassResult = await new Promise((resolve, reject) => {
+      sass.render(
+        {
+          file: 'src/css/main.scss',
+          importer: globImporter(),
+          outFile: 'src/css/main.css',
+          sourceMap: !isProd,
+          sourceMapContents: true,
+        },
+        (err, result) => {
+          if (err) {
+            reject(err)
+            return
+          }
+          resolve(result)
+        },
+      )
+    })
+  } catch (err) {
+    const filePath = path.relative(__dirname, err.file)
+    console.log(red(`Error in ${filePath}`))
+    console.log(err.formatted.toString())
+    return
+  }
 
-  return gulp
-    .src('src/css/main.scss')
-    .pipe(gulpif(!isProd, sourcemaps.init()))
-    .pipe(sass().on('error', sass.logError))
-    .pipe(
-      postcss([
-        autoprefixer({
-          cascade: false,
-        }),
-        ...(isProd ? [csswring()] : []),
-      ]),
-    )
-    .pipe(gulpif(!isProd, sourcemaps.write()))
-    .pipe(gulp.dest('src/html'))
+  const postcssResult = await postcss([
+    autoprefixer({
+      cascade: false,
+    }),
+    ...(isProd ? [csswring()] : []),
+  ]).process(sassResult.css, {
+    from: 'main.css',
+    to: 'main.css',
+    map: !isProd && {
+      inline: true,
+      prev: JSON.parse(sassResult.map),
+    },
+  })
+
+  await writeFileAsync('src/html/main.css', postcssResult.css)
 }
 
 const js = () => {
-  const { rollup } = require('rollup')
-  const configs = require('./rollup.config')
-
   return Promise.all(
-    configs.map(async ([inputConfig, outputConfig]) => {
+    rollupConfigs.map(async ([inputConfig, outputConfig]) => {
       const { write } = await rollup(inputConfig)
       return write(outputConfig)
     }),
@@ -76,7 +109,7 @@ const js = () => {
 }
 
 const serve = (done) => {
-  browserSync.init(
+  bs.init(
     {
       notify: false,
       ui: false,
@@ -90,7 +123,6 @@ const serve = (done) => {
 }
 
 const clean = () => {
-  const del = require('del')
   return del('dist')
 }
 
@@ -100,7 +132,7 @@ const watch = (done) => {
   }
 
   const reload = (done) => {
-    browserSync.reload()
+    bs.reload()
     done()
   }
 

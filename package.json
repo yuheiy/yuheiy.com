@@ -3,7 +3,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "predeploy": "npm run build",
+    "predeploy": "yarn build",
     "deploy": "gh-pages -d dist/"
   },
   "dependencies": {
@@ -13,21 +13,21 @@
     "what-input": "^5.0.5"
   },
   "devDependencies": {
-    "autoprefixer": "^8.0.0",
+    "ansi-red": "^0.1.1",
+    "autoprefixer": "^8.1.0",
     "browser-sync": "^2.23.6",
     "csswring": "^6.0.3",
     "del": "^3.0.0",
     "gh-pages": "^1.1.0",
     "gulp": "^4.0.0",
-    "gulp-if": "^2.0.2",
-    "gulp-postcss": "^7.0.1",
-    "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.4",
     "jsdom": "^11.6.2",
-    "pug": "^2.0.0-rc.4",
+    "node-sass": "^4.7.2",
+    "node-sass-glob-importer": "^5.1.0",
+    "postcss": "^6.0.19",
+    "pug": "^2.0.0",
     "real-world-website-render-helper": "yuheiy/real-world-website-render-helper#983ad565bf1b5b26e107c4254d3c16ba97d80d68",
-    "rollup": "^0.56.2",
-    "rollup-plugin-commonjs": "^8.3.0",
+    "rollup": "^0.56.4",
+    "rollup-plugin-commonjs": "^9.0.0",
     "rollup-plugin-node-resolve": "^3.0.3",
     "rollup-plugin-uglify": "^3.0.0"
   }
