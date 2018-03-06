@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "start": "gulp",
-    "build": "gulp build",
+    "start": "node bin.js",
+    "build": "node bin.js --prod",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist/"
   },
@@ -15,11 +15,13 @@
   "devDependencies": {
     "ansi-red": "^0.1.1",
     "autoprefixer": "^8.1.0",
+    "bach": "^1.2.0",
     "browser-sync": "^2.23.6",
+    "chokidar": "^2.0.2",
+    "cpx": "^1.5.0",
     "csswring": "^6.0.3",
     "del": "^3.0.0",
     "gh-pages": "^1.1.0",
-    "gulp": "^4.0.0",
     "jsdom": "^11.6.2",
     "node-sass": "^4.7.2",
     "node-sass-glob-importer": "^5.1.0",

@@ -1,9 +1,8 @@
 const path = require('path')
 const fs = require('fs')
 const { promisify } = require('util')
-const gulp = require('gulp')
-const browserSync = require('browser-sync')
 const { JSDOM } = require('jsdom')
+const browserSync = require('browser-sync')
 const renderHelper = require('real-world-website-render-helper')
 const pug = require('pug')
 const sass = require('node-sass')
@@ -13,14 +12,13 @@ const postcss = require('postcss')
 const autoprefixer = require('autoprefixer')
 const csswring = require('csswring')
 const { rollup } = require('rollup')
-const rollupConfigs = require('./rollup.config')
 const del = require('del')
+const chokidar = require('chokidar')
+const cpx = require('cpx')
+const { series, parallel } = require('bach')
+const rollupConfigs = require('./rollup.config')
 
-const writeFileAsync = promisify(fs.writeFile)
-
-const bs = browserSync.create()
-
-const isProd = process.argv[2] === 'build'
+const isProd = process.argv[2] === '--prod'
 
 let blogPosts = null
 
@@ -51,6 +49,8 @@ const renderHelperConfig = {
     })
   },
 }
+
+const writeFileAsync = promisify(fs.writeFile)
 
 const css = async () => {
   let sassResult
@@ -108,6 +108,8 @@ const js = () => {
   })
 }
 
+const bs = browserSync.create()
+
 const serve = (done) => {
   bs.init(
     {
@@ -127,45 +129,30 @@ const clean = () => {
 }
 
 const watch = (done) => {
-  const options = {
-    delay: 50,
-  }
-
-  const reload = (done) => {
-    bs.reload()
-    done()
-  }
-
-  gulp.watch('src/css/**/*.scss', options, css)
-  gulp.watch('src/js/**/*.js', options, js)
-  gulp.watch(['src/html/**/*', 'public/**/*'], options, reload)
+  const opts = { ignoreInitial: true }
+  chokidar.watch('src/css/**/*.scss', opts).on('all', css)
+  chokidar.watch('src/js/**/*.js', opts).on('all', js)
+  chokidar.watch(['src/html/**/*', 'public/**/*'], opts).on('all', bs.reload)
   done()
 }
-
-// prettier-ignore
-gulp.task('default', gulp.series(
-  clean,
-  gulp.parallel(loadBlogPosts, css, js),
-  serve,
-  watch,
-))
 
 const html = () => {
   return renderHelper.build(renderHelperConfig)
 }
 
 const copy = () => {
-  return gulp.src('public/**/*', { dot: true }).pipe(gulp.dest('dist'))
+  return Promise.all(
+    ['public/**/*', 'public/.nojekyll'].map(
+      (src) => new Promise((resolve) => cpx.copy(src, 'dist', resolve)),
+    ),
+  )
 }
 
-// prettier-ignore
-gulp.task('build', gulp.series(
-  clean,
-  gulp.parallel(
-    gulp.series(
-      gulp.parallel(loadBlogPosts, css, js),
-      html,
-    ),
-    copy,
-  ),
-))
+if (isProd) {
+  series(
+    clean,
+    parallel(series(parallel(loadBlogPosts, css, js), html), copy),
+  )()
+} else {
+  series(clean, parallel(loadBlogPosts, css, js), serve, watch)()
+}

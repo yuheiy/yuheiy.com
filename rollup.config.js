@@ -2,7 +2,7 @@ const resolve = require('rollup-plugin-node-resolve')
 const commonjs = require('rollup-plugin-commonjs')
 const uglify = require('rollup-plugin-uglify')
 
-const isProd = process.argv[2] === 'build'
+const isProd = process.argv[2] === '--prod'
 
 const inputConfig = {
   input: './src/js/main.js',
