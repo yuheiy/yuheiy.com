@@ -17,11 +17,13 @@ const createLine = () => {
   const points = [[startX, startY]]
   let currentX = startX
   let currentY = startY
+
   while (currentX < STAGE_WIDTH) {
     currentX += random(minMoveX, maxMoveX)
     currentY += random(minMoveY, maxMoveY)
     points.push([currentX, currentY])
   }
+
   return {
     points,
     toPointsAttrVal: () => points.map((point) => point.join(',')).join(' '),
@@ -67,40 +69,40 @@ class YuheiAvator extends withComponent() {
 
   render({ state: { lines } }) {
     return `
-            <style>
-                :host {
-                    contain: content;
-                    display: inline-block;
-                }
+      <style>
+        :host {
+          contain: content;
+          display: inline-block;
+        }
 
-                svg {
-                    width: 100%;
-                    height: 100%;
-                    vertical-align: bottom;
-                }
+        svg {
+          width: 100%;
+          height: 100%;
+          vertical-align: bottom;
+        }
 
-                rect {
-                    fill: var(--yuhei-avator__color-bg, var(--color-bg));
-                }
+        rect {
+          fill: var(--yuhei-avator__color-bg, var(--color-bg));
+        }
 
-                polyline {
-                    fill: none;
-                    stroke: var(--yuhei-avator__color-fg, var(--color-fg));
-                    stroke-width: ${STAGE_WIDTH / 64};
-                    stroke-linecap: square;
-                }
-            </style>
+        polyline {
+          fill: none;
+          stroke: var(--yuhei-avator__color-fg, var(--color-fg));
+          stroke-width: ${STAGE_WIDTH / 64};
+          stroke-linecap: square;
+        }
+      </style>
 
-            <svg viewBox="0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}" preserveAspectRatio="xMidYMid slice" role="img">
-                <rect width="${STAGE_WIDTH}" height="${STAGE_HEIGHT}"></rect>
-                ${lines
-                  .map(
-                    (line) =>
-                      `<polyline points="${line.toPointsAttrVal()}"></polyline>`,
-                  )
-                  .join('')}
-            </svg>
-        `
+      <svg viewBox="0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}" preserveAspectRatio="xMidYMid slice" role="img">
+        <rect width="${STAGE_WIDTH}" height="${STAGE_HEIGHT}"></rect>
+        ${lines
+          .map(
+            (line) =>
+              `<polyline points="${line.toPointsAttrVal()}"></polyline>`,
+          )
+          .join('')}
+      </svg>
+    `
   }
 }
 

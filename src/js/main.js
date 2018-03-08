@@ -18,17 +18,17 @@ if (canUseWebComponents && !shouldReduceMotion) {
       isAfterInitial = false
     }
 
-    const input = whatInput.ask()
-    const intent = whatInput.ask('intent')
+    const inputed = whatInput.ask()
+    const intented = whatInput.ask('intent')
 
-    if (intent === 'initial') {
+    if (intented === 'initial') {
       isAfterInitial = true
       return
     }
 
-    const isHovered = intent === 'mouse' && anchorEl.matches(':hover')
+    const isHovered = intented === 'mouse' && anchorEl.matches(':hover')
     const isKeyboardFocused =
-      input === 'keyboard' && document.activeElement === anchorEl
+      inputed === 'keyboard' && document.activeElement === anchorEl
     const shouldPlay = isHovered || isKeyboardFocused
 
     if (shouldPlay) {
