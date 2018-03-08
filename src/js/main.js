@@ -3,18 +3,32 @@ import whatInput from 'what-input'
 import throttle from 'raf-throttle'
 import { canUseWebComponents, shouldReduceMotion } from './util.js'
 
-const isMouse = () =>
-  whatInput.ask() === 'mouse' || whatInput.ask('intent') === 'mouse'
-const isKeyboard = () => whatInput.ask() === 'keyboard'
-
 if (canUseWebComponents && !shouldReduceMotion) {
   const anchorEl = document.querySelector('body > footer a[title="yuheiy.com"]')
   const avatorEl = anchorEl.querySelector('yuhei-avator')
+  let isAfterInitial = false
 
-  const checkActivity = () => {
-    const isHovered = isMouse() && anchorEl.matches(':hover')
+  const checkActivity = async () => {
+    if (isAfterInitial) {
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(resolve)
+        })
+      })
+      isAfterInitial = false
+    }
+
+    const input = whatInput.ask()
+    const intent = whatInput.ask('intent')
+
+    if (intent === 'initial') {
+      isAfterInitial = true
+      return
+    }
+
+    const isHovered = intent === 'mouse' && anchorEl.matches(':hover')
     const isKeyboardFocused =
-      isKeyboard() && document.activeElement === anchorEl
+      input === 'keyboard' && document.activeElement === anchorEl
     const shouldPlay = isHovered || isKeyboardFocused
 
     if (shouldPlay) {
@@ -24,13 +38,10 @@ if (canUseWebComponents && !shouldReduceMotion) {
     }
   }
 
-  // mouse
   document.addEventListener('blur', checkActivity)
   document.addEventListener('mousemove', throttle(checkActivity))
   anchorEl.addEventListener('mouseenter', checkActivity)
   anchorEl.addEventListener('mouseleave', checkActivity)
-
-  // keyboard
   anchorEl.addEventListener('focus', checkActivity)
   anchorEl.addEventListener('blur', checkActivity)
 }
