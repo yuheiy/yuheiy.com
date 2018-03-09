@@ -189,24 +189,16 @@ p {
   margin-bottom: 0;
 }
 
+p + p {
+  margin-top: $spacing-line;
+}
+
 ol,
 ul {
   margin-top: 0;
   margin-bottom: 0;
-  padding-left: 1em;
+  padding-left: 0;
   list-style-type: none;
-}
-
-li::before {
-  content: "-";
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
-  color: $color-gray;
-}
-
-p + p {
-  margin-top: $spacing-line;
 }
 
 h3 + ol,
@@ -214,16 +206,47 @@ h3 + ul {
   margin-top: $spacing-line-half;
 }
 
+li {
+  display: flex;
+}
+
+li::before {
+  content: "-";
+  flex-shrink: 0;
+  width: 1em;
+  color: $color-gray;
+}
+
+li > a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 dl {
   margin-top: 0;
   margin-bottom: 0;
 }
 
+h3 + dl {
+  margin-top: $spacing-line-half;
+}
+
+dt {
+  display: flex;
+}
+
 dt::before {
   content: "-";
-  display: inline-block;
+  flex-shrink: 0;
   width: 1em;
   color: $color-gray;
+}
+
+dt > a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 dt:nth-child(n + 2) {
@@ -236,10 +259,6 @@ dd {
 
 dd {
   margin-left: 1em;
-}
-
-h3 + dl {
-  margin-top: $spacing-line-half;
 }
 
 a {
@@ -369,6 +388,7 @@ body > main {
 }
 
 body > main > section {
+  min-width: 0;
   hanging-punctuation: allow-end;
 
   @media #{$mq-md} {
