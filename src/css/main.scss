@@ -264,6 +264,7 @@ dd {
 a {
   color: var(--color-link);
   text-decoration-color: var(--color-link-underline);
+  text-underline-position: under;
 }
 
 a:hover {
