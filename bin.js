@@ -24,7 +24,7 @@ let blogPosts = null
 
 const loadBlogPosts = async () => {
   const { window: { document } } = await JSDOM.fromURL(
-    'http://yuheiy.hatenablog.com/feed',
+    'https://yuheiy.hatenablog.com/feed',
   )
   const posts = Array.from(document.querySelectorAll('entry')).map(
     (entryEl) => {
