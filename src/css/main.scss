@@ -268,7 +268,7 @@ a {
 }
 
 a:hover {
-  text-decoration: none;
+  text-decoration-color: currentcolor;
 }
 
 // It currently does not work with Chrome and Safari, but it will fix in a while.
