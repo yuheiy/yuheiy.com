@@ -8,12 +8,8 @@ $color-white-dark: hsl(0, 0%, 96%);
 $color-gray: hsl(0, 0%, 45%);
 
 $color-orient: #2f6690;
-$color-orient-light: mix($color-orient, $color-white);
-
 $color-bay-of-many: #26408b;
-
 $color-melanzane: #2b061e;
-$color-melanzane-light: mix($color-melanzane, $color-white);
 
 // typography
 $ratio: 1.8;
@@ -46,7 +42,7 @@ $mq-md: "(min-width: #{(($width-wrapper-md + $width-gap-lg * 2) * $text-ratio-ro
 $mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2) * $text-ratio-root-lg) / 1rem * 1em})";
 
 @mixin type-header {
-  font-family: var(--font-stack-header);
+  font-family: var(--font-family-header);
   font-kerning: auto;
   font-feature-settings: "palt" 1;
   line-height: $line-height-header;
@@ -62,11 +58,11 @@ $mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2) * $text-ratio-ro
   --color-fg: $color-black;
   --color-bg: $color-white;
   --color-link: $color-orient;
-  --color-link-underline: $color-orient-light;
+  --color-link-underline: rgba($color-orient, 0.5);
 
-  --font-stack-body: "YuGothic", sans-serif;
-  --font-stack-header: "Yu Mincho", serif;
-  --font-stack-code: "Menlo", "Consolas", monospace;
+  --font-family-body: "YuGothic", sans-serif;
+  --font-family-header: "Yu Mincho", serif;
+  --font-family-code: "Menlo", "Consolas", monospace;
 
   --text-size-scale: $ratio-secondary;
   --text-size: 1rem;
@@ -103,7 +99,7 @@ $mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2) * $text-ratio-ro
 }
 
 html {
-  font-family: var(--font-stack-body);
+  font-family: var(--font-family-body);
   line-height: $line-height-body;
 
   @media #{$mq-sm} {
@@ -122,7 +118,7 @@ html[data-whatinput="touch"] {
 }
 
 html.wf-active {
-  --font-stack-header: "heisei-mincho-std", serif;
+  --font-family-header: "heisei-mincho-std", serif;
 }
 
 body {
@@ -150,7 +146,7 @@ body {
 :focus {
   outline: $color-bay-of-many var(--focus-ring-width) solid;
   outline-offset: var(--focus-ring-offset);
-  transition: outline-width 100ms ease-out;
+  transition: outline-width 0.1s ease-out;
 }
 
 h1,
@@ -217,12 +213,6 @@ li::before {
   color: $color-gray;
 }
 
-li > a {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 dl {
   margin-top: 0;
   margin-bottom: 0;
@@ -236,25 +226,15 @@ dt {
   display: flex;
 }
 
+dt:nth-child(n + 2) {
+  margin-top: $spacing-line-half;
+}
+
 dt::before {
   content: "-";
   flex-shrink: 0;
   width: 1em;
   color: $color-gray;
-}
-
-dt > a {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-dt:nth-child(n + 2) {
-  margin-top: $spacing-line-half;
-}
-
-dd {
-  margin-left: 0;
 }
 
 dd {
@@ -267,19 +247,26 @@ a {
   text-underline-position: under;
 }
 
+li > a,
+dt > a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 a:hover {
-  text-decoration-color: currentcolor;
+  --color-link-underline: currentcolor;
 }
 
 // It currently does not work with Chrome and Safari, but it will fix in a while.
 // https://bugs.chromium.org/p/chromium/issues/detail?id=768220
 a:visited {
   --color-link: $color-melanzane;
-  --color-link-underline: $color-melanzane-light;
+  --color-link-underline: rgba($color-melanzane, 0.5);
 }
 
 code {
-  font-family: var(--font-stack-code);
+  font-family: var(--font-family-code);
 }
 
 html.no-js yuhei-avator {
