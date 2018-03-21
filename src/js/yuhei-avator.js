@@ -3,6 +3,8 @@ import range from 'lodash-es/range'
 import { withComponent } from 'skatejs/dist/esnext/index.js'
 import { canUseWebComponents } from './util.js'
 
+const ANIMATION_REFRESH_RATE = 1000 / 15
+
 const STAGE_WIDTH = 1024
 const STAGE_HEIGHT = 1024
 
@@ -31,8 +33,6 @@ const createLine = () => {
 }
 
 const createLines = () => range(3).map(createLine)
-
-const ANIMATION_REFRESH_RATE = 1000 / 15
 
 class YuheiAvator extends withComponent() {
   constructor() {
@@ -71,34 +71,35 @@ class YuheiAvator extends withComponent() {
     return `
       <style>
         :host {
+          all: initial;
           contain: content;
           display: inline-block;
         }
 
-        svg {
+        #stage {
           width: 100%;
           height: 100%;
           vertical-align: bottom;
         }
 
-        rect {
-          fill: var(--yuhei-avator__color-bg, var(--color-bg));
+        #background {
+          fill: var(--yuhei-avator__color-bg, var(--color-bg, white));
         }
 
-        polyline {
+        .line {
           fill: none;
-          stroke: var(--yuhei-avator__color-fg, var(--color-fg));
+          stroke: var(--yuhei-avator__color-fg, var(--color-fg, black));
           stroke-width: ${STAGE_WIDTH / 64};
           stroke-linecap: square;
         }
       </style>
 
-      <svg viewBox="0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}" preserveAspectRatio="xMidYMid slice" role="img">
-        <rect width="${STAGE_WIDTH}" height="${STAGE_HEIGHT}"></rect>
+      <svg id="stage" viewBox="0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}" preserveAspectRatio="xMidYMid slice" role="img">
+        <rect id="background" width="${STAGE_WIDTH}" height="${STAGE_HEIGHT}"></rect>
         ${lines
           .map(
             (line) =>
-              `<polyline points="${line.toPointsAttrVal()}"></polyline>`,
+              `<polyline class="line" points="${line.toPointsAttrVal()}"></polyline>`,
           )
           .join('')}
       </svg>
