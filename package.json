@@ -7,7 +7,7 @@
     "deploy": "gh-pages -d dist/"
   },
   "dependencies": {
-    "lodash-es": "^4.17.5",
+    "lodash-es": "^4.17.7",
     "raf-throttle": "^2.0.3",
     "skatejs": "^5.1.1",
     "what-input": "^5.0.5"
@@ -24,13 +24,12 @@
     "gh-pages": "^1.1.0",
     "jsdom": "^11.6.2",
     "node-sass": "^4.7.2",
-    "node-sass-glob-importer": "^5.1.0",
-    "postcss": "^6.0.19",
-    "pug": "^2.0.0",
+    "postcss": "^6.0.20",
+    "pug": "^2.0.3",
     "real-world-website-render-helper": "yuheiy/real-world-website-render-helper#983ad565bf1b5b26e107c4254d3c16ba97d80d68",
-    "rollup": "^0.56.4",
-    "rollup-plugin-commonjs": "^9.0.0",
-    "rollup-plugin-node-resolve": "^3.0.3",
+    "rollup": "^0.57.1",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-uglify": "^3.0.0"
   }
 }

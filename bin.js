@@ -6,7 +6,6 @@ const browserSync = require('browser-sync')
 const renderHelper = require('real-world-website-render-helper')
 const pug = require('pug')
 const sass = require('node-sass')
-const globImporter = require('node-sass-glob-importer')
 const red = require('ansi-red')
 const postcss = require('postcss')
 const autoprefixer = require('autoprefixer')
@@ -59,7 +58,6 @@ const css = async () => {
       sass.render(
         {
           file: 'src/css/main.scss',
-          importer: globImporter(),
           outFile: 'src/css/main.css',
           sourceMap: !isProd,
           sourceMapContents: true,
