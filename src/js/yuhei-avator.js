@@ -1,6 +1,5 @@
 import random from 'lodash-es/random'
 import range from 'lodash-es/range'
-import { withComponent } from 'skatejs/dist/esnext/index.js'
 import { canUseWebComponents } from './util.js'
 
 const ANIMATION_REFRESH_RATE = 1000 / 15
@@ -34,18 +33,15 @@ const createLine = () => {
 
 const createLines = () => range(3).map(createLine)
 
-class YuheiAvator extends withComponent() {
+export default class YuheiAvator extends HTMLElement {
   constructor() {
     super()
     this._isPlaying = false
     this._timerId = null
-    this.updateLines = this.updateLines.bind(this)
+    this._render = this._render.bind(this)
 
-    this.updateLines()
-  }
-
-  updateLines() {
-    this.state = { lines: createLines() }
+    this.attachShadow({ mode: 'open' })
+    this._render()
   }
 
   play() {
@@ -53,8 +49,8 @@ class YuheiAvator extends withComponent() {
       return
     }
 
-    this.updateLines()
-    this._timerId = setInterval(this.updateLines, ANIMATION_REFRESH_RATE)
+    this._render()
+    this._timerId = setInterval(this._render, ANIMATION_REFRESH_RATE)
     this._isPlaying = true
   }
 
@@ -67,8 +63,10 @@ class YuheiAvator extends withComponent() {
     this._isPlaying = false
   }
 
-  render({ state: { lines } }) {
-    return `
+  _render() {
+    const lines = createLines()
+
+    this.shadowRoot.innerHTML = `
       <style>
         :host {
           all: initial;
@@ -105,8 +103,4 @@ class YuheiAvator extends withComponent() {
       </svg>
     `
   }
-}
-
-if (canUseWebComponents) {
-  customElements.define('yuhei-avator', YuheiAvator)
 }

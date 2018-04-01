@@ -9,7 +9,6 @@
   "dependencies": {
     "lodash-es": "^4.17.7",
     "raf-throttle": "^2.0.3",
-    "skatejs": "^5.1.1",
     "what-input": "^5.0.5"
   },
   "devDependencies": {

@@ -1,7 +1,24 @@
-import './yuhei-avator.js'
 import whatInput from 'what-input'
 import throttle from 'raf-throttle'
+import YuheiAvator from './yuhei-avator.js'
 import { canUseWebComponents, shouldReduceMotion } from './util.js'
+
+if (canUseWebComponents) {
+  customElements.define('yuhei-avator', YuheiAvator)
+} else {
+  const tmplEl = document.querySelector('#tmpl-yuhei-avator-fallback')
+
+  document.querySelectorAll('yuhei-avator').forEach((originalEl) => {
+    const replacementEl = document.importNode(
+      tmplEl.content.firstElementChild,
+      true,
+    )
+    ;[...originalEl.attributes].forEach(({ name, value }) => {
+      replacementEl.setAttribute(name, value)
+    })
+    originalEl.replaceWith(replacementEl)
+  })
+}
 
 if (canUseWebComponents && !shouldReduceMotion) {
   const anchorEl = document.querySelector('body > footer a[title="yuheiy.com"]')
@@ -44,21 +61,6 @@ if (canUseWebComponents && !shouldReduceMotion) {
   anchorEl.addEventListener('mouseleave', checkActivity)
   anchorEl.addEventListener('focus', checkActivity)
   anchorEl.addEventListener('blur', checkActivity)
-}
-
-if (!canUseWebComponents) {
-  const tmplEl = document.querySelector('#tmpl-yuhei-avator-fallback')
-
-  document.querySelectorAll('yuhei-avator').forEach((originalEl) => {
-    const replacementEl = document.importNode(
-      tmplEl.content.firstElementChild,
-      true,
-    )
-    ;[...originalEl.attributes].forEach(({ name, value }) => {
-      replacementEl.setAttribute(name, value)
-    })
-    originalEl.replaceWith(replacementEl)
-  })
 }
 
 console.log('Source: https://github.com/yuheiy/yuheiy.com')
