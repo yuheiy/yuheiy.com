@@ -55,16 +55,16 @@ $mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2) * $text-ratio-ro
 }
 
 :root {
-  --color-fg: $color-black;
-  --color-bg: $color-white;
-  --color-link: $color-orient;
-  --color-link-underline: rgba($color-orient, 0.5);
+  --color-fg: #{$color-black};
+  --color-bg: #{$color-white};
+  --color-link: #{$color-orient};
+  --color-link-underline: #{rgba($color-orient, 0.5)};
 
   --font-family-body: "YuGothic", sans-serif;
   --font-family-header: "Yu Mincho", serif;
   --font-family-code: "Menlo", "Consolas", monospace;
 
-  --text-size-scale: $ratio-secondary;
+  --text-size-scale: #{$ratio-secondary};
   --text-size: 1rem;
   --text-size-2: calc((var(--text-size-scale) + 1) / 2 * var(--text-size));
   --text-size-3: calc(var(--text-size-scale) * var(--text-size));
@@ -76,22 +76,22 @@ $mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2) * $text-ratio-ro
     var(--text-size-scale) * var(--text-size-scale) * var(--text-size)
   );
 
-  --width-content: $width-content;
-  --width-gap: $width-gap-sm;
+  --width-content: #{$width-content};
+  --width-gap: #{$width-gap-sm};
   --width-wrapper: var(--width-content);
 
   --focus-ring-width: 3px;
   --focus-ring-offset: 4px;
 
   @media #{$mq-sm} {
-    --width-gap: $width-gap-md;
+    --width-gap: #{$width-gap-md};
   }
 
   @media #{$mq-md} {
-    --text-size-scale: $ratio;
+    --text-size-scale: #{$ratio};
 
-    --width-hang: $width-hang;
-    --width-gap: $width-gap-lg;
+    --width-hang: #{$width-hang};
+    --width-gap: #{$width-gap-lg};
     --width-wrapper: calc(
       var(--width-hang) + var(--width-gap) + var(--width-content)
     );
@@ -261,8 +261,8 @@ a:hover {
 // It currently does not work with Chrome and Safari, but it will fix in a while.
 // https://bugs.chromium.org/p/chromium/issues/detail?id=768220
 a:visited {
-  --color-link: $color-melanzane;
-  --color-link-underline: rgba($color-melanzane, 0.5);
+  --color-link: #{$color-melanzane};
+  --color-link-underline: #{rgba($color-melanzane, 0.5)};
 }
 
 code {
@@ -276,7 +276,7 @@ html.no-js yuhei-avator {
 body > yuhei-avator,
 body > .yuhei-avator-fallback,
 html.no-js body > yuhei-avator + noscript .yuhei-avator-fallback {
-  --yuhei-avator__color-fg: $color-white-dark;
+  --yuhei-avator__color-fg: #{$color-white-dark};
   --yuhei-avator__color-bg: transparent;
   position: fixed;
   top: 0;
@@ -412,7 +412,7 @@ body > footer a[title="yuheiy.com"] {
 }
 
 body > footer a[title="yuheiy.com"]:hover {
-  --yuhei-avator__color-bg: $color-white-dark;
+  --yuhei-avator__color-bg: #{$color-white-dark};
 }
 
 body > footer yuhei-avator,
