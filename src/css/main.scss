@@ -254,10 +254,6 @@ dt > a {
   white-space: nowrap;
 }
 
-a:hover {
-  --color-link-underline: currentcolor;
-}
-
 // It currently does not work with Chrome and Safari, but it will fix in a while.
 // https://bugs.chromium.org/p/chromium/issues/detail?id=768220
 a:visited {
@@ -409,10 +405,6 @@ body > footer {
 
 body > footer a[title="yuheiy.com"] {
   --focus-ring-offset: 0;
-}
-
-body > footer a[title="yuheiy.com"]:hover {
-  --yuhei-avator__color-bg: #{$color-white-dark};
 }
 
 body > footer yuhei-avator,
