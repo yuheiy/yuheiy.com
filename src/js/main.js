@@ -1,4 +1,3 @@
-import whatInput from 'what-input'
 import throttle from 'raf-throttle'
 import YuheiAvator from './yuhei-avator.js'
 import { canUseWebComponents, shouldReduceMotion } from './util.js'
@@ -23,30 +22,9 @@ if (canUseWebComponents) {
 if (canUseWebComponents && !shouldReduceMotion) {
   const anchorEl = document.querySelector('body > footer a[title="yuheiy.com"]')
   const avatorEl = anchorEl.querySelector('yuhei-avator')
-  let isAfterInitial = false
 
   const checkActivity = async () => {
-    if (isAfterInitial) {
-      await new Promise((resolve) => {
-        requestAnimationFrame(() => {
-          requestAnimationFrame(resolve)
-        })
-      })
-      isAfterInitial = false
-    }
-
-    const inputed = whatInput.ask()
-    const intented = whatInput.ask('intent')
-
-    if (intented === 'initial') {
-      isAfterInitial = true
-      return
-    }
-
-    const isHovered = intented === 'mouse' && anchorEl.matches(':hover')
-    const isKeyboardFocused =
-      inputed === 'keyboard' && document.activeElement === anchorEl
-    const shouldPlay = isHovered || isKeyboardFocused
+    const shouldPlay = anchorEl.matches(':hover') || anchorEl.matches(':focus')
 
     if (shouldPlay) {
       avatorEl.play()

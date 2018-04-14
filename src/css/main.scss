@@ -80,7 +80,6 @@ $mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2) * $text-ratio-ro
   --width-gap: #{$width-gap-sm};
   --width-wrapper: var(--width-content);
 
-  --focus-ring-width: 3px;
   --focus-ring-offset: 4px;
 
   @media #{$mq-sm} {
@@ -111,12 +110,6 @@ html {
   }
 }
 
-html[data-whatinput="initial"],
-html[data-whatinput="mouse"],
-html[data-whatinput="touch"] {
-  --focus-ring-width: 0;
-}
-
 html.wf-active {
   --font-family-header: "heisei-mincho-std", serif;
 }
@@ -144,9 +137,9 @@ body {
 }
 
 :focus {
-  outline: $color-bay-of-many var(--focus-ring-width) solid;
+  outline: $color-bay-of-many 3px solid;
   outline-offset: var(--focus-ring-offset);
-  transition: outline-width 0.1s ease-out;
+  transition: outline-width 0.15s ease-out;
 }
 
 h1,

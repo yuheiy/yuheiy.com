@@ -8,8 +8,7 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.8",
-    "raf-throttle": "^2.0.3",
-    "what-input": "^5.0.5"
+    "raf-throttle": "^2.0.3"
   },
   "devDependencies": {
     "ansi-red": "^0.1.1",
