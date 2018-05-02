@@ -22,17 +22,19 @@ const isProd = process.argv[2] === '--prod'
 let blogPosts = null
 
 const loadBlogPosts = async () => {
-  const { window: { document } } = await JSDOM.fromURL(
-    'https://yuheiy.hatenablog.com/feed',
-  )
-  const posts = Array.from(document.querySelectorAll('entry')).map(
-    (entryEl) => {
+  if (!blogPosts) {
+    const {
+      window: { document },
+    } = await JSDOM.fromURL('https://yuheiy.hatenablog.com/feed')
+    const posts = [...document.querySelectorAll('entry')].map((entryEl) => {
       const title = entryEl.querySelector('title').textContent
       const url = entryEl.querySelector('link').getAttribute('href')
       return { title, url }
-    },
-  )
-  blogPosts = posts
+    })
+    blogPosts = posts
+  }
+
+  return blogPosts
 }
 
 const renderHelperConfig = {
@@ -40,9 +42,9 @@ const renderHelperConfig = {
   inputExt: 'pug',
   output: 'dist',
   outputExt: 'html',
-  render: ({ src, filename }) => {
+  render: async ({ src, filename }) => {
     return pug.render(src.toString(), {
-      blogPosts,
+      blogPosts: await loadBlogPosts(),
       filename,
       basedir: 'src/html',
     })
@@ -147,10 +149,7 @@ const copy = () => {
 }
 
 if (isProd) {
-  series(
-    clean,
-    parallel(series(parallel(loadBlogPosts, css, js), html), copy),
-  )()
+  series(clean, parallel(series(parallel(css, js), html), copy))()
 } else {
-  series(clean, parallel(loadBlogPosts, css, js), serve, watch)()
+  series(clean, parallel(css, js), serve, watch)()
 }
