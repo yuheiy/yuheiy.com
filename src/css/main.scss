@@ -196,12 +196,14 @@ h3 + ul {
 }
 
 li {
-  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 li::before {
   content: "-";
-  flex-shrink: 0;
+  display: inline-block;
   width: 1em;
   color: $color-gray;
 }
@@ -216,7 +218,9 @@ h3 + dl {
 }
 
 dt {
-  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 dt:nth-child(n + 2) {
@@ -225,7 +229,7 @@ dt:nth-child(n + 2) {
 
 dt::before {
   content: "-";
-  flex-shrink: 0;
+  display: inline-block;
   width: 1em;
   color: $color-gray;
 }
@@ -238,13 +242,6 @@ a {
   color: var(--color-link);
   text-decoration-color: var(--color-link-underline);
   text-underline-position: under;
-}
-
-li > a,
-dt > a {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 // It currently does not work with Chrome and Safari, but it will fix in a while.
