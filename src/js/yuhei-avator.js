@@ -34,14 +34,29 @@ const createLine = () => {
 const createLines = () => range(3).map(createLine)
 
 export default class YuheiAvator extends HTMLElement {
+  static get observedAttributes() {
+    return ['label']
+  }
+
   constructor() {
     super()
     this._isPlaying = false
     this._timerId = null
-    this._render = this._render.bind(this)
-
-    this.attachShadow({ mode: 'open' })
     this._render()
+  }
+
+  get label() {
+    return this.getAttribute('label') || ''
+  }
+
+  set label(val) {
+    this.setAttribute('label', val || '')
+  }
+
+  attributeChangedCallback(_name, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      this._render()
+    }
   }
 
   play() {
@@ -50,7 +65,7 @@ export default class YuheiAvator extends HTMLElement {
     }
 
     this._render()
-    this._timerId = setInterval(this._render, ANIMATION_REFRESH_RATE)
+    this._timerId = setInterval(this._render.bind(this), ANIMATION_REFRESH_RATE)
     this._isPlaying = true
   }
 
@@ -66,7 +81,8 @@ export default class YuheiAvator extends HTMLElement {
   _render() {
     const lines = createLines()
 
-    this.shadowRoot.innerHTML = `
+    //
+    ;(this.shadowRoot || this.attachShadow({ mode: 'open' })).innerHTML = `
       <style>
         :host {
           all: initial;
@@ -92,7 +108,9 @@ export default class YuheiAvator extends HTMLElement {
         }
       </style>
 
-      <svg id="stage" viewBox="0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}" preserveAspectRatio="xMidYMid slice" role="img">
+      <svg id="stage" viewBox="0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${
+      this.label
+    }">
         <rect id="background" width="${STAGE_WIDTH}" height="${STAGE_HEIGHT}"></rect>
         ${lines
           .map(
