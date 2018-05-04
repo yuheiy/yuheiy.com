@@ -201,7 +201,7 @@ li {
   white-space: nowrap;
 }
 
-li::before {
+li > span:first-child::before {
   content: "-";
   display: inline-block;
   width: 1em;
@@ -227,7 +227,7 @@ dt:nth-child(n + 2) {
   margin-top: $spacing-line-half;
 }
 
-dt::before {
+dt > span:first-child::before {
   content: "-";
   display: inline-block;
   width: 1em;

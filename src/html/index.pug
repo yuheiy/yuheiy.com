@@ -87,15 +87,18 @@ html.no-js(lang="ja")
           ol
             each post in blogPosts.slice(0, 5)
               li
+                span(aria-hidden="true")
                 a(href=post.url title=post.title)= post.title
 
       section
         h2 作ってるもの
         dl
           dt
+            span(aria-hidden="true")
             a(href="https://github.com/yuheiy/real-world-website-boilerplate" title="Real world website boilerplate") Real world website boilerplate
           dd 静的ウェブサイトを開発するためのボイラープレート
           dt
+            span(aria-hidden="true")
             a(href="https://github.com/yuheiy/childnode-ponyfill" title="ChildNode ponyfill") ChildNode ponyfill
           dd
             a(href="https://developer.mozilla.org/ja/docs/Web/API/ChildNode")
