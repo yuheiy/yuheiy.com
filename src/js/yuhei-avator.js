@@ -1,6 +1,5 @@
 import random from 'lodash-es/random'
 import range from 'lodash-es/range'
-import { canUseWebComponents } from './util.js'
 
 const ANIMATION_REFRESH_RATE = 1000 / 15
 

@@ -1,6 +1,10 @@
 import throttle from 'raf-throttle'
 import YuheiAvator from './yuhei-avator.js'
-import { canUseWebComponents, shouldReduceMotion } from './util.js'
+
+const isCustomElementsSupported = Boolean(window.customElements)
+const isShadowDomSupported = Boolean(document.documentElement.attachShadow)
+const canUseWebComponents = isCustomElementsSupported && isShadowDomSupported
+const shouldReduceMotion = window.matchMedia('(prefers-reduced-motion)').matches
 
 if (canUseWebComponents) {
   customElements.define('yuhei-avator', YuheiAvator)
