@@ -30,8 +30,10 @@ if (canUseWebComponents && !shouldReduceMotion) {
   const anchorEl = document.querySelector('body > footer a[title="yuheiy.com"]')
   const avatorEl = anchorEl.querySelector('yuhei-avator')
 
-  const checkActivity = async () => {
-    const shouldPlay = anchorEl.matches(':hover') || anchorEl.matches(':focus')
+  const checkActivity = () => {
+    const isMouse = window.matchMedia('(pointer: fine)').matches
+    const shouldPlay =
+      (isMouse && anchorEl.matches(':hover')) || anchorEl.matches(':focus')
 
     if (shouldPlay) {
       avatorEl.play()
