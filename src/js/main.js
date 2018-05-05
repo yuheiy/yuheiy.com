@@ -6,6 +6,9 @@ if (canUseWebComponents) {
   customElements.define('yuhei-avator', YuheiAvator)
 } else {
   const tmplEl = document.querySelector('#tmpl-yuhei-avator-fallback')
+  const customAttrs = {
+    label: 'aria-label',
+  }
 
   document.querySelectorAll('yuhei-avator').forEach((originalEl) => {
     const replacementEl = document.importNode(
@@ -13,7 +16,11 @@ if (canUseWebComponents) {
       true,
     )
     ;[...originalEl.attributes].forEach(({ name, value }) => {
-      replacementEl.setAttribute(name, value)
+      if (customAttrs[name]) {
+        replacementEl.setAttribute(customAttrs[name], value)
+      } else {
+        replacementEl.setAttribute(name, value)
+      }
     })
     originalEl.replaceWith(replacementEl)
   })

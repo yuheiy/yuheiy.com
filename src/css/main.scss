@@ -255,6 +255,10 @@ code {
   font-family: var(--font-family-code);
 }
 
+.yuhei-avator-fallback {
+  vertical-align: bottom;
+}
+
 html.no-js yuhei-avator {
   display: none !important;
 }
