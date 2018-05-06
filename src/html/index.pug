@@ -1,6 +1,7 @@
 - const title = '安田祐平'
 - const description = 'フロントエンドウェブデベロッパーです。主にHTML/CSS/JavaScript、アクセシビリティ、SPAに関心があります。Web Componentsが普及した世界を待ち望んでいます。'
 - const baseUrl = 'https://yuheiy.com'
+- const pagePath = '/'
 
 mixin yuhei-avator-fallback
   svg.yuhei-avator-fallback(viewBox="0 0 1024 1024" preserveAspectRatio="xMidYMid slice" role="img")&attributes(attributes)
@@ -20,11 +21,11 @@ html.no-js(lang="ja")
     meta(property="og:title" content=title)
     meta(property="og:type" content="website")
     meta(property="og:image" content="https://avatars1.githubusercontent.com/u/11547305")
-    meta(property="og:url" content=`${baseUrl}/`)
+    meta(property="og:url" content=`${baseUrl}${pagePath}`)
     meta(property="og:description" content=description)
     meta(property="og:site_name" content=title)
     meta(property="og:locale" content="ja_JP")
-    link(rel="canonical" href="/")
+    link(rel="canonical" href=pagePath)
     style
       include main.css
     script.
@@ -106,7 +107,7 @@ html.no-js(lang="ja")
             | のPonyfill
 
     footer
-      a(href="/" title="yuheiy.com" aria-current="page")
+      a(href=pagePath title="yuheiy.com" aria-current="page")
         yuhei-avator(label="ゆうへいのアバター画像")
         noscript
           +yuhei-avator-fallback(aria-label="ゆうへいのアバター画像")
