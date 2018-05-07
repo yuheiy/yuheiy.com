@@ -67,8 +67,8 @@ html.no-js(lang="ja")
       p= description
 
     main
-      section
-        h2 僕について
+      section(aria-labelledby="me")
+        h2#me 僕について
         p
           | 1995年生まれ。ゆうへいと呼ばれることが多いです。よく
           a(href="https://twitter.com/_yuheiy") Twitter
@@ -80,8 +80,8 @@ html.no-js(lang="ja")
         p 仕事では普通のウェブサイトをよく作ります。アクセシビリティや運用性を考慮した堅牢な実装が得意です。
         p 趣味は、Internet Explorerで動かないサイトを作ることです。
 
-      section
-        h2 書いた記事
+      section(aria-labelledby="articles")
+        h2#articles 書いた記事
         section
           h3
             a(href="https://yuheiy.hatenablog.com/") yuhei blog
@@ -91,8 +91,8 @@ html.no-js(lang="ja")
                 span(aria-hidden="true")
                 a(href=post.url title=post.title)= post.title
 
-      section
-        h2 作ってるもの
+      section(aria-labelledby="projects")
+        h2#projects 作ってるもの
         dl
           dt
             span(aria-hidden="true")
