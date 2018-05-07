@@ -196,9 +196,7 @@ h3 + ul {
 }
 
 li {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: flex;
 }
 
 li > span:first-child::before {
@@ -206,6 +204,12 @@ li > span:first-child::before {
   display: inline-block;
   width: 1em;
   color: $color-gray;
+}
+
+li > a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 dl {
@@ -218,12 +222,10 @@ h3 + dl {
 }
 
 dt {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: flex;
 }
 
-dt:nth-child(n + 2) {
+dt:nth-of-type(n + 2) {
   margin-top: $spacing-line-half;
 }
 
@@ -232,6 +234,12 @@ dt > span:first-child::before {
   display: inline-block;
   width: 1em;
   color: $color-gray;
+}
+
+dt > a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 dd {
