@@ -15,7 +15,7 @@ const del = require('del')
 const chokidar = require('chokidar')
 const cpx = require('cpx')
 const { series, parallel } = require('bach')
-const rollupConfigs = require('./rollup.config')
+const rollupConfig = require('./rollup.config')
 
 const isProd = process.argv[2] === '--prod'
 
@@ -97,15 +97,13 @@ const css = async () => {
   await writeFileAsync('src/html/main.css', postcssResult.css)
 }
 
-const js = () => {
-  return Promise.all(
-    rollupConfigs.map(async ([inputConfig, outputConfig]) => {
-      const { write } = await rollup(inputConfig)
-      return write(outputConfig)
-    }),
-  ).catch((err) => {
+const js = async () => {
+  try {
+    const { write } = await rollup(rollupConfig[0])
+    return write(rollupConfig[1])
+  } catch (err) {
     console.log(err)
-  })
+  }
 }
 
 const bs = browserSync.create()
