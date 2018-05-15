@@ -6,7 +6,7 @@ const isProd = process.argv[2] === '--prod'
 
 module.exports = [
   {
-    input: './src/js/main.js',
+    input: './src/js/main.mjs',
     plugins: [
       resolve(),
       commonjs(),
@@ -24,7 +24,7 @@ module.exports = [
     ],
   },
   {
-    file: './src/html/main.js',
+    file: './src/html/main.mjs',
     format: 'es',
     sourcemap: !isProd && 'inline',
   },

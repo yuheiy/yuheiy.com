@@ -1,5 +1,5 @@
 import throttle from 'raf-throttle'
-import YuheiAvator from './yuhei-avator.js'
+import YuheiAvator from './yuhei-avator.mjs'
 
 const isCustomElementsSupported = Boolean(window.customElements)
 const isShadowDomSupported = Boolean(document.documentElement.attachShadow)

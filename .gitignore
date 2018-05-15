@@ -5,4 +5,4 @@ yarn-error.log*
 
 /dist/
 /src/html/main.css
-/src/html/main.js
+/src/html/main.mjs
