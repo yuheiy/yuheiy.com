@@ -116,9 +116,9 @@ html.wf-active {
 
 body {
   display: grid;
+  row-gap: $spacing-line-double;
   grid-template-columns: [full-start] minmax(0, var(--width-content)) [full-end];
   grid-template-areas: "content";
-  grid-row-gap: $spacing-line-double;
   justify-content: center;
   margin: $spacing-line 1rem;
   font-kerning: none;
@@ -126,11 +126,11 @@ body {
   background-color: var(--color-bg);
 
   @media #{$mq-md} {
+    column-gap: var(--width-gap);
     grid-template-columns:
       [full-start] var(--width-hang) var(--width-content)
       [full-end];
     grid-template-areas: "hang content";
-    grid-column-gap: var(--width-gap);
     margin-top: $spacing-line-double;
     margin-bottom: $spacing-line-double;
   }
@@ -291,12 +291,12 @@ html.no-js body > yuhei-avator + noscript {
 
 body > header {
   display: grid;
+  row-gap: $spacing-line;
   grid-column: full;
-  grid-row-gap: $spacing-line;
 
   @media #{$mq-md} {
+    column-gap: inherit;
     grid-template-columns: inherit;
-    grid-column-gap: inherit;
   }
 }
 
@@ -369,8 +369,8 @@ body > header p {
 
 body > main {
   display: grid;
+  row-gap: $spacing-line-double;
   grid-column: content;
-  grid-row-gap: $spacing-line-double;
 }
 
 body > main > section {
