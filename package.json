@@ -23,6 +23,7 @@
     "jsdom": "^11.10.0",
     "node-sass": "^4.9.0",
     "postcss": "^6.0.22",
+    "postcss-gap-properties": "^1.0.0",
     "pug": "^2.0.3",
     "real-world-website-render-helper": "yuheiy/real-world-website-render-helper#05bca36c82bab13505a826a9890de824af6c5a6e",
     "rollup": "^0.58.2",

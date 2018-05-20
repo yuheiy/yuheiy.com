@@ -9,6 +9,7 @@ const sass = require('node-sass')
 const red = require('ansi-red')
 const postcss = require('postcss')
 const autoprefixer = require('autoprefixer')
+const gapProperties = require('postcss-gap-properties')
 const csswring = require('csswring')
 const { rollup } = require('rollup')
 const del = require('del')
@@ -81,6 +82,7 @@ const css = async () => {
   }
 
   const postcssResult = await postcss([
+    gapProperties(),
     autoprefixer({
       cascade: false,
     }),
