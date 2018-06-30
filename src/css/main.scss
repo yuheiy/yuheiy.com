@@ -376,10 +376,6 @@ body > main {
 body > main > section {
   min-width: 0;
   hanging-punctuation: allow-end;
-
-  @media #{$mq-md} {
-    position: relative;
-  }
 }
 
 body > main > section h2 {
@@ -387,11 +383,9 @@ body > main > section h2 {
   hanging-punctuation: none;
 
   @media #{$mq-md} {
-    position: absolute;
-    right: 100%;
+    float: left;
     width: var(--width-hang);
-    margin-right: var(--width-gap);
-    margin-bottom: 0;
+    margin-left: calc((var(--width-hang) + var(--width-gap)) * -1);
     text-align: end;
   }
 }
