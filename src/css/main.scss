@@ -100,6 +100,8 @@ $mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2) * $text-ratio-ro
 html {
   font-family: var(--font-family-body);
   line-height: $line-height-body;
+  font-kerning: none;
+  text-underline-position: under;
 
   @media #{$mq-sm} {
     font-size: percentage($text-ratio-root-md);
@@ -121,7 +123,6 @@ body {
   grid-template-areas: "content";
   justify-content: center;
   margin: $spacing-line 1rem;
-  font-kerning: none;
   color: var(--color-fg);
   background-color: var(--color-bg);
 
@@ -249,7 +250,6 @@ dd {
 a {
   color: var(--color-link);
   text-decoration-color: var(--color-link-underline);
-  text-underline-position: under;
 }
 
 // It currently does not work with Chrome and Safari, but it will fix in a while.
