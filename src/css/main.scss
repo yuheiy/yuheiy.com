@@ -139,7 +139,7 @@ body {
 :focus {
   outline: $color-bay-of-many 3px solid;
   outline-offset: var(--focus-ring-offset);
-  transition: outline-width 0.15s ease-out;
+  transition: outline-width 0.1s ease-out;
 }
 
 h1,
