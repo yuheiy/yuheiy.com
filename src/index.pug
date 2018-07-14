@@ -27,11 +27,11 @@ html.no-js(lang="ja")
     meta(property="og:locale" content="ja_JP")
     link(rel="canonical" href=pagePath)
     style
-      include main.css
+      include main.bundle.css
     script(type="module").
       document.documentElement.classList.remove('no-js')
     script(type="module")
-      include main.mjs
+      include main.bundle.mjs
     script.
       (function(d) {
         var config = {

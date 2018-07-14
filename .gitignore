@@ -4,5 +4,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /dist/
-/src/html/main.css
-/src/html/main.mjs
+/src/main.bundle.css
+/src/main.bundle.mjs
