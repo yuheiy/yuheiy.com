@@ -2,6 +2,30 @@
 - const description = 'フロントエンドウェブデベロッパーです。主にHTML/CSS/JavaScript、アクセシビリティ、SPAに関心があります。Web Componentsが普及した世界を待ち望んでいます。'
 - const baseUrl = 'https://yuheiy.com'
 - const pagePath = '/'
+-
+  const projects = [
+    [
+      'Real world website boilerplate',
+      'https://github.com/yuheiy/real-world-website-boilerplate',
+      '静的ウェブサイトを開発するためのボイラープレート',
+    ], [
+      'Aozora lorem',
+      'https://github.com/yuheiy/aozora-lorem',
+      '青空文庫のデータを基にしたダミーテキストジェネレーター',
+    ], [
+      '<animated-collapse> element',
+      'https://yuheiy.github.io/animated-collapse-element/',
+      'アニメーションを伴う汎用開閉パネルのWeb Componentsでの実装',
+    ], [
+      'React Checkbox Group',
+      'https://github.com/yuheiy/react-checkbox-group',
+      'Reactでのcheckboxの管理を簡単にするライブラリ',
+    ], [
+      'ChildNode ponyfill',
+      'https://github.com/yuheiy/childnode-ponyfill',
+      '<code>ChildNode</code>のPolyfill',
+    ]
+  ]
 
 mixin yuhei-avator-fallback
   svg.yuhei-avator-fallback(viewBox="0 0 1024 1024" preserveAspectRatio="xMidYMid slice" role="img")&attributes(attributes)
@@ -93,25 +117,11 @@ html.no-js(lang="ja")
       section(aria-labelledby="projects")
         h2#projects 作ってるもの
         dl
-          dt
-            span(aria-hidden="true")
-            a(href="https://github.com/yuheiy/real-world-website-boilerplate" title="Real world website boilerplate") Real world website boilerplate
-          dd 静的ウェブサイトを開発するためのボイラープレート
-          dt
-            span(aria-hidden="true")
-            a(href="https://yuheiy.github.io/animated-collapse-element/" title="<animated-collapse> element") &lt;animated-collapse&gt; element
-          dd アニメーションを伴う汎用開閉パネルのWeb Componentsでの実装
-          dt
-            span(aria-hidden="true")
-            a(href="https://github.com/yuheiy/react-checkbox-group" title="React Checkbox Group") React Checkbox Group
-          dd Reactでのcheckboxの管理を簡単にするライブラリ
-          dt
-            span(aria-hidden="true")
-            a(href="https://github.com/yuheiy/childnode-ponyfill" title="ChildNode ponyfill") ChildNode ponyfill
-          dd
-            a(href="https://developer.mozilla.org/ja/docs/Web/API/ChildNode")
-              code ChildNode
-            | のPonyfill
+          each project in projects
+            dt
+              span(aria-hidden="true")
+              a(href=project[1] title=project[0])= project[0]
+            dd!= project[2]
 
     footer
       a(href=pagePath title="yuheiy.com" aria-current="page")
