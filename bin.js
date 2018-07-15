@@ -6,6 +6,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const sass = require('gulp-sass')
 const globImporter = require('node-sass-glob-importer')
 const postcss = require('gulp-postcss')
+const gapProperties = require('postcss-gap-properties')
 const autoprefixer = require('autoprefixer')
 const csswring = require('csswring')
 const { rollup } = require('rollup')
@@ -35,6 +36,7 @@ const css = () => {
 
   if (!postcssPlugins) {
     postcssPlugins = [
+      gapProperties(),
       autoprefixer({
         cascade: false,
       }),
