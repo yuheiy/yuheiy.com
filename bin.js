@@ -149,7 +149,7 @@ const serve = (done) => {
       server: ['dist', 'public'],
       files: [
         {
-          match: ['src/**/*.pug', 'src/**/*.bundle.*'],
+          match: ['src/**/*.pug', 'src/main.bundle.{css,mjs}'],
           fn: bs.reload,
         },
         {
