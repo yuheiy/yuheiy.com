@@ -31,7 +31,7 @@ if (canUseWebComponents) {
 }
 
 if (canUseWebComponents && !shouldReduceMotion) {
-  const anchorEl = document.querySelector('body > footer a[title="yuheiy.com"]')
+  const anchorEl = document.querySelector('body > footer a')
   const avatorEl = anchorEl.querySelector('yuhei-avator')
 
   const checkActivity = () => {
