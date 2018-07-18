@@ -197,20 +197,19 @@ h3 + ul {
 }
 
 li {
-  display: flex;
+  margin-left: 1em;
+}
+
+li:nth-child(n + 2) {
+  margin-top: $spacing-line-half / 4;
 }
 
 li > span:first-child::before {
   content: "-";
   display: inline-block;
   width: 1em;
+  margin-left: -1em;
   color: $color-gray;
-}
-
-li > a {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 dl {
@@ -223,7 +222,7 @@ h3 + dl {
 }
 
 dt {
-  display: flex;
+  margin-left: 1em;
 }
 
 dt:nth-of-type(n + 2) {
@@ -234,13 +233,8 @@ dt > span:first-child::before {
   content: "-";
   display: inline-block;
   width: 1em;
+  margin-left: -1em;
   color: $color-gray;
-}
-
-dt > a {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 dd {
