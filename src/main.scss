@@ -396,10 +396,21 @@ body > footer {
 
 body > footer a {
   --focus-ring-offset: 0;
+  display: inline-block;
+  padding-top: 0;
+  padding-bottom: 0;
   border-bottom: 0;
+}
+
+body > footer a:active {
+  --yuhei-avator__color-fg: var(--color-bg);
+  --yuhei-avator__color-bg: var(--color-fg);
 }
 
 body > footer yuhei-avator,
 body > footer .yuhei-avator-fallback {
   width: 4rem;
+  vertical-align: bottom;
+  border: 1px solid hsl(0, 0%, 90%);
+  pointer-events: none;
 }
