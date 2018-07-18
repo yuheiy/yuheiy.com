@@ -8,8 +8,6 @@ $color-white-dark: hsl(0, 0%, 96%);
 $color-gray: hsl(0, 0%, 45%);
 
 $color-orient: #2f6690;
-$color-bay-of-many: #26408b;
-$color-melanzane: #2b061e;
 
 // typography
 $ratio: 1.8;
@@ -58,7 +56,6 @@ $mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2) * $text-ratio-ro
   --color-fg: #{$color-black};
   --color-bg: #{$color-white};
   --color-link: #{$color-orient};
-  --color-link-underline: #{rgba($color-orient, 0.5)};
 
   --font-family-body: "YuGothic", sans-serif;
   --font-family-header: "Yu Mincho", serif;
@@ -80,7 +77,7 @@ $mq-lg: "(min-width: #{(($width-wrapper-lg + $width-gap-lg * 2) * $text-ratio-ro
   --width-gap: #{$width-gap-sm};
   --width-wrapper: var(--width-content);
 
-  --focus-ring-offset: 4px;
+  --focus-ring-offset: 3px;
 
   @media #{$mq-sm} {
     --width-gap: #{$width-gap-md};
@@ -101,7 +98,6 @@ html {
   font-family: var(--font-family-body);
   line-height: $line-height-body;
   font-kerning: none;
-  text-underline-position: under;
 
   @media #{$mq-sm} {
     font-size: percentage($text-ratio-root-md);
@@ -138,7 +134,7 @@ body {
 }
 
 :focus {
-  outline: $color-bay-of-many 3px solid;
+  outline: #{rgba($color-orient, 0.75)} 3px solid;
   outline-offset: var(--focus-ring-offset);
   transition: outline-width 0.1s ease-out;
 }
@@ -242,15 +238,20 @@ dd {
 }
 
 a {
+  padding-top: 2px;
+  padding-bottom: 2px;
   color: var(--color-link);
-  text-decoration-color: var(--color-link-underline);
+  text-decoration: none;
+  border-bottom: 2px solid #{rgba($color-orient, 0.5)};
 }
 
-// It currently does not work with Chrome and Safari, but it will fix in a while.
-// https://bugs.chromium.org/p/chromium/issues/detail?id=768220
-a:visited {
-  --color-link: #{$color-melanzane};
-  --color-link-underline: #{rgba($color-melanzane, 0.5)};
+a:focus {
+  border-bottom: 0;
+}
+
+a:active {
+  color: var(--color-bg);
+  background-color: var(--color-link);
 }
 
 code {
@@ -395,6 +396,7 @@ body > footer {
 
 body > footer a[title="yuheiy.com"] {
   --focus-ring-offset: 0;
+  border-bottom: 0;
 }
 
 body > footer yuhei-avator,
