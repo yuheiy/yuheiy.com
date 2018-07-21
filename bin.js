@@ -16,7 +16,7 @@ const { uglify } = require('rollup-plugin-uglify')
 const { minify } = require('uglify-es')
 const { JSDOM } = require('jsdom')
 const pug = require('pug')
-const renderHelper = require('real-world-website-render-helper')
+const compileHelper = require('real-world-website-compile-helper')
 const browserSync = require('browser-sync')
 const { series, parallel } = require('bach')
 
@@ -114,12 +114,12 @@ const loadBlogPosts = async () => {
   return blogPosts
 }
 
-const htmlRendererConfig = {
+const htmlCompilerConfig = {
   input: 'src',
-  inputExt: 'pug',
+  inputExt: '.pug',
   output: 'dist',
-  outputExt: 'html',
-  render: async ({ src, filename }) => {
+  outputExt: '.html',
+  compile: async ({ src, filename }) => {
     return pug.render(String(src), {
       blogPosts: await loadBlogPosts(),
       filename,
@@ -129,7 +129,7 @@ const htmlRendererConfig = {
 }
 
 const html = () => {
-  return renderHelper.build(htmlRendererConfig)
+  return compileHelper.buildFiles(htmlCompilerConfig)
 }
 
 const copy = () => {
@@ -138,15 +138,15 @@ const copy = () => {
 
 const serve = (done) => {
   const bs = browserSync.create()
-  const renderHtmlMiddleware = renderHelper.createRenderMiddleware(
-    htmlRendererConfig,
+  const compileHtmlMiddleware = compileHelper.buildCompileMiddleware(
+    htmlCompilerConfig,
   )
 
   bs.init(
     {
       notify: false,
       ui: false,
-      server: ['dist', 'public'],
+      server: 'public',
       files: [
         {
           match: ['src/**/*.pug', 'src/main.bundle.{css,mjs}'],
@@ -157,12 +157,12 @@ const serve = (done) => {
           fn: css,
         },
         {
-          match: ['src/**/*.mjs', '!src/**/*.bundle.mjs'],
+          match: ['src/**/*.mjs', '!src/main.bundle.mjs'],
           fn: js,
         },
       ],
       watchEvents: ['add', 'change', 'unlink'],
-      middleware: renderHtmlMiddleware,
+      middleware: compileHtmlMiddleware,
       ghostMode: false,
       open: false,
     },
