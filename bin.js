@@ -128,14 +128,6 @@ const htmlCompilerConfig = {
   },
 }
 
-const html = () => {
-  return compileHelper.buildFiles(htmlCompilerConfig)
-}
-
-const copy = () => {
-  return vfs.src('public/**/*', { dot: true }).pipe(vfs.dest('dist'))
-}
-
 const serve = (done) => {
   const bs = browserSync.create()
   const compileHtmlMiddleware = compileHelper.buildCompileMiddleware(
@@ -168,6 +160,14 @@ const serve = (done) => {
     },
     done,
   )
+}
+
+const html = () => {
+  return compileHelper.buildFiles(htmlCompilerConfig)
+}
+
+const copy = () => {
+  return vfs.src('public/**/*', { dot: true }).pipe(vfs.dest('dist'))
 }
 
 const script = process.argv[2]
