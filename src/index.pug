@@ -123,8 +123,8 @@ html.no-js(lang="ja")
               a(href=project[1])= project[0]
             dd!= project[2]
 
-    footer
-      a(href=pagePath aria-current="page")
-        yuhei-avator(label="yuheiy.com")
+    footer(lang="en")
+      address
+        yuhei-avator(label="Made by Yuhei Yasuda.")
         noscript
-          +yuhei-avator-fallback(aria-label="yuheiy.com")
+          +yuhei-avator-fallback(aria-label="Made by Yuhei Yasuda.")

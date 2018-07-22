@@ -1,4 +1,3 @@
-import throttle from 'raf-throttle'
 import YuheiAvator from './yuhei-avator.mjs'
 
 const isCustomElementsSupported = Boolean(window.customElements)
@@ -31,27 +30,31 @@ if (canUseWebComponents) {
 }
 
 if (canUseWebComponents && !shouldReduceMotion) {
-  const anchorEl = document.querySelector('body > footer a')
-  const avatorEl = anchorEl.querySelector('yuhei-avator')
+  const bgAvatorEl = document.querySelector('body > yuhei-avator')
+  const authorAvatorEl = document.querySelector('body > footer yuhei-avator')
 
   const checkActivity = () => {
-    const isMouse = window.matchMedia('(pointer: fine)').matches
-    const shouldPlay =
-      (isMouse && anchorEl.matches(':hover')) || anchorEl.matches(':focus')
+    const shouldPlayAuthor = authorAvatorEl.matches(':hover, :active')
+    const shouldPlayBg = authorAvatorEl.matches(':active')
 
-    if (shouldPlay) {
-      avatorEl.play()
+    if (shouldPlayAuthor) {
+      authorAvatorEl.play()
     } else {
-      avatorEl.stop()
+      authorAvatorEl.stop()
+    }
+
+    if (shouldPlayBg) {
+      bgAvatorEl.play()
+    } else {
+      bgAvatorEl.stop()
     }
   }
 
-  document.addEventListener('blur', checkActivity)
-  document.addEventListener('mousemove', throttle(checkActivity))
-  anchorEl.addEventListener('mouseenter', checkActivity)
-  anchorEl.addEventListener('mouseleave', checkActivity)
-  anchorEl.addEventListener('focus', checkActivity)
-  anchorEl.addEventListener('blur', checkActivity)
+  const loop = () => {
+    requestAnimationFrame(loop)
+    checkActivity()
+  }
+  requestAnimationFrame(loop)
 }
 
 console.log('Source: https://github.com/yuheiy/yuheiy.com')

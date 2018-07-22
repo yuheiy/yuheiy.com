@@ -3431,10 +3431,6 @@ query-string@^4.1.0:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
 
-raf-throttle@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/raf-throttle/-/raf-throttle-2.0.3.tgz#d10259094e2c6d77df225622fb847c5ea6d5a313"
-
 randomatic@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-3.0.0.tgz#d35490030eb4f7578de292ce6dfb04a91a128923"

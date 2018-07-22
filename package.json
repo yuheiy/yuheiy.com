@@ -7,8 +7,7 @@
     "deploy": "gh-pages -d dist/ -t"
   },
   "dependencies": {
-    "lodash-es": "^4.17.10",
-    "raf-throttle": "^2.0.3"
+    "lodash-es": "^4.17.10"
   },
   "devDependencies": {
     "autoprefixer": "^9.0.0",

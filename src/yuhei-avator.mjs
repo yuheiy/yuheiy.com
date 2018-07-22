@@ -8,7 +8,7 @@ const STAGE_HEIGHT = 1024
 
 const minMoveX = STAGE_WIDTH / 100
 const maxMoveX = STAGE_WIDTH / 10
-const minMoveY = STAGE_HEIGHT / 10 * -1
+const minMoveY = (STAGE_HEIGHT / 10) * -1
 const maxMoveY = STAGE_HEIGHT / 10
 
 const createLine = () => {
@@ -93,6 +93,7 @@ export default class YuheiAvator extends HTMLElement {
           width: 100%;
           height: 100%;
           vertical-align: bottom;
+          pointer-events: none;
         }
 
         #background {
