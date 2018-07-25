@@ -136,7 +136,6 @@ body {
 :focus {
   outline: #{rgba($color-orient, 0.75)} 3px solid;
   outline-offset: var(--focus-ring-offset);
-  transition: outline-width 0.1s ease-out;
 }
 
 h1,
