@@ -388,6 +388,10 @@ body > main > section h2 {
   }
 }
 
+body > main > section > section:nth-of-type(n + 2) h3 {
+  margin-top: $spacing-line;
+}
+
 body > footer {
   grid-column: content;
   text-align: center;

@@ -114,9 +114,36 @@ const loadYuheiblogPosts = async () => {
   return yuheiblogPosts
 }
 
+let standarddesignPosts = null
+
+const loadStandarddesignPosts = async () => {
+  if (!standarddesignPosts) {
+    // const dom = await JSDOM.fromURL('https://standard.shiftbrain.com/atom.xml')
+    // const posts = [...dom.window.document.querySelectorAll('entry')]
+    //   .filter((entryEl) => {
+    //     const nameEl = entryEl.querySelector('author > name')
+    //     console.log(nameEl.textContent)
+    //     if (nameEl) {
+    //       return nameEl.textContent === '安田祐平'
+    //     }
+    //   })
+    //   .map((entryEl) => {
+    //     const title = entryEl.querySelector('title').textContent
+    //     const url = entryEl.querySelector('link').getAttribute('href')
+    //     return { title, url }
+    //   })
+    // standarddesignPosts = posts
+    standarddesignPosts = [
+      {
+        title:
+          'ページ内リンクの実装から考える、a要素のclickイベントとその振る舞い',
+        url:
+          'https://standard.shiftbrain.com/blog/default-action-for-click-event-of-a-element',
+      },
+    ]
   }
 
-  return blogPosts
+  return standarddesignPosts
 }
 
 const htmlCompilerConfig = {
@@ -127,6 +154,7 @@ const htmlCompilerConfig = {
   compile: async ({ src, filename }) => {
     return pug.render(String(src), {
       yuheiblogPosts: await loadYuheiblogPosts(),
+      standarddesignPosts: await loadStandarddesignPosts(),
       filename,
       basedir: 'src',
     })

@@ -120,6 +120,11 @@ html.no-js(lang="ja")
                 span(aria-hidden="true")
                 a(href=post.url)= post.title
 
+        section#standarddesign(aria-labelledby="standarddesign-heading")
+          h3#standarddesign-heading
+            a(href="https://standard.shiftbrain.com/") スタンダードデザインユニット
+          ol
+            each post in standarddesignPosts.slice(0, 5)
               li
                 span(aria-hidden="true")
                 a(href=post.url)= post.title
