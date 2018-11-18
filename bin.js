@@ -96,10 +96,10 @@ const js = async () => {
   }
 }
 
-let blogPosts = null
+let yuheiblogPosts = null
 
-const loadBlogPosts = async () => {
-  if (!blogPosts) {
+const loadYuheiblogPosts = async () => {
+  if (!yuheiblogPosts) {
     const dom = await JSDOM.fromURL('https://yuheiy.hatenablog.com/feed')
     const posts = [...dom.window.document.querySelectorAll('entry')].map(
       (entryEl) => {
@@ -108,7 +108,12 @@ const loadBlogPosts = async () => {
         return { title, url }
       },
     )
-    blogPosts = posts
+    yuheiblogPosts = posts
+  }
+
+  return yuheiblogPosts
+}
+
   }
 
   return blogPosts
@@ -121,7 +126,7 @@ const htmlCompilerConfig = {
   outputExt: '.html',
   compile: async ({ src, filename }) => {
     return pug.render(String(src), {
-      blogPosts: await loadBlogPosts(),
+      yuheiblogPosts: await loadYuheiblogPosts(),
       filename,
       basedir: 'src',
     })
